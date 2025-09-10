@@ -3,6 +3,7 @@ package dev.doctor4t.trainmurdermystery.block_entity;
 import dev.doctor4t.trainmurdermystery.block.DoorPartBlock;
 import dev.doctor4t.trainmurdermystery.block.SmallDoorBlock;
 import dev.doctor4t.trainmurdermystery.index.TrainMurderMysteryBlockEntities;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.enums.DoubleBlockHalf;
@@ -28,11 +29,8 @@ public class SmallDoorBlockEntity extends DoorBlockEntity {
         if (this.world == null) {
             return;
         }
-        this.world.setBlockState(this.pos, this.getCachedState().with(SmallDoorBlock.OPEN, this.open));
-        this.world.setBlockState(this.pos.up(), this.getCachedState()
-                .with(SmallDoorBlock.OPEN, this.open)
-                .with(SmallDoorBlock.HALF, DoubleBlockHalf.UPPER)
-        );
+        this.world.setBlockState(this.pos, this.getCachedState().with(SmallDoorBlock.OPEN, this.open), Block.NOTIFY_LISTENERS | Block.FORCE_STATE);
+        this.world.setBlockState(this.pos.up(), this.getCachedState().with(SmallDoorBlock.OPEN, this.open).with(SmallDoorBlock.HALF, DoubleBlockHalf.UPPER), Block.NOTIFY_LISTENERS | Block.FORCE_STATE);
     }
 
     @Override
