@@ -10,10 +10,6 @@ import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
-import net.minecraft.util.Colors;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class GiveRoomKeyCommand {
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
@@ -28,7 +24,7 @@ public class GiveRoomKeyCommand {
     }
 
     private static int giveRoomKey(ServerCommandSource source, String roomName) {
-        ItemStack itemStack = new ItemStack(TrainMurderMysteryItems.ROOM_KEY);
+        ItemStack itemStack = new ItemStack(TrainMurderMysteryItems.KEY);
         itemStack.apply(DataComponentTypes.LORE, LoreComponent.DEFAULT, component -> new LoreComponent(Text.literal(roomName).getWithStyle(Style.EMPTY.withItalic(false).withColor(0xFF8C00))));
         if (source.getPlayer() != null) source.getPlayer().giveItemStack(itemStack);
         return 1;

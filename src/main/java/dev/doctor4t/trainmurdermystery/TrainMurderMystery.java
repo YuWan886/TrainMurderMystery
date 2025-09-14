@@ -55,3 +55,4 @@ public class TrainMurderMystery implements ModInitializer {
 // TODO: Add instinct
 // TODO: Add death when off the train
 // TODO: Nicer starting phase + UI
+// TODO: System that remembers previous roles and allows cycling of roles

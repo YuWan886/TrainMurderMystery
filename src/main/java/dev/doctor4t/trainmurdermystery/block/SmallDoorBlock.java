@@ -141,7 +141,7 @@ public class SmallDoorBlock extends DoorPartBlock {
                 toggleDoor(state, world, entity, lowerPos);
                 return ActionResult.CONSUME;
             } else {
-                if (!entity.getKeyName().equals("") && !(player.getMainHandStack().isOf(TrainMurderMysteryItems.ROOM_KEY) || player.getMainHandStack().isOf(TrainMurderMysteryItems.LOCKPICK))) {
+                if (!entity.getKeyName().equals("") && !(player.getMainHandStack().isOf(TrainMurderMysteryItems.KEY) || player.getMainHandStack().isOf(TrainMurderMysteryItems.LOCKPICK))) {
                     if (!world.isClient) {
                         world.playSound(null, lowerPos.getX() + .5f, lowerPos.getY() + 1, lowerPos.getZ() + .5f, TrainMurderMysterySounds.BLOCK_DOOR_LOCKED, SoundCategory.BLOCKS, 1f, 1f);
                     } else {

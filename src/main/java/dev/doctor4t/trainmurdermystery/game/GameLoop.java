@@ -79,6 +79,7 @@ public class GameLoop {
             ServerPlayerEntity player = rolePlayerPool.getFirst();
             rolePlayerPool.removeFirst();
             player.giveItemStack(new ItemStack(TrainMurderMysteryItems.KNIFE));
+            player.giveItemStack(new ItemStack(TrainMurderMysteryItems.LOCKPICK));
             gameComponent.addHitman(player);
         }
 
@@ -105,7 +106,7 @@ public class GameLoop {
         // select rooms
         Collections.shuffle(playerPool);
         for (int i = 0; i < playerPool.size(); i++) {
-            ItemStack itemStack = new ItemStack(TrainMurderMysteryItems.ROOM_KEY);
+            ItemStack itemStack = new ItemStack(TrainMurderMysteryItems.KEY);
             int roomNumber = (int) Math.floor((double) (i + 2) / 2);
             itemStack.apply(DataComponentTypes.LORE, LoreComponent.DEFAULT, component -> new LoreComponent(Text.literal("Room "+ roomNumber).getWithStyle(Style.EMPTY.withItalic(false).withColor(0xFF8C00))));
             playerPool.get(i).giveItemStack(itemStack);

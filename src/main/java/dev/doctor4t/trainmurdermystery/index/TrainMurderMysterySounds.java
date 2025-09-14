@@ -22,7 +22,7 @@ public interface TrainMurderMysterySounds {
     SoundEvent BLOCK_DOOR_LOCKED = registrar.create("block.door.locked");
 
     // Items
-    SoundEvent ITEM_ROOM_KEY_DOOR = registrar.create("item.room_key.door");
+    SoundEvent ITEM_KEY_DOOR = registrar.create("item.key.door");
     SoundEvent ITEM_LOCKPICK_DOOR = registrar.create("item.lockpick.door");
     SoundEvent ITEM_KNIFE_PREPARE = registrar.create("item.knife.prepare");
     SoundEvent ITEM_KNIFE_STAB = registrar.create("item.knife.stab");

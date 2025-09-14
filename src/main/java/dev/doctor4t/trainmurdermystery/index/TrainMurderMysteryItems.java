@@ -5,7 +5,7 @@ import dev.doctor4t.trainmurdermystery.TrainMurderMystery;
 import dev.doctor4t.trainmurdermystery.item.KnifeItem;
 import dev.doctor4t.trainmurdermystery.item.LockpickItem;
 import dev.doctor4t.trainmurdermystery.item.RevolverItem;
-import dev.doctor4t.trainmurdermystery.item.RoomKeyItem;
+import dev.doctor4t.trainmurdermystery.item.KeyItem;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
@@ -14,8 +14,6 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.text.Text;
 
-import javax.tools.Tool;
-
 public interface TrainMurderMysteryItems {
     ItemRegistrar registrar = new ItemRegistrar(TrainMurderMystery.MOD_ID);
 
@@ -23,7 +21,7 @@ public interface TrainMurderMysteryItems {
     RegistryKey<ItemGroup> DECORATION_GROUP = RegistryKey.of(RegistryKeys.ITEM_GROUP, TrainMurderMystery.id("decoration"));
     RegistryKey<ItemGroup> EQUIPMENT_GROUP = RegistryKey.of(RegistryKeys.ITEM_GROUP, TrainMurderMystery.id("equipment"));
 
-    Item ROOM_KEY = registrar.create("room_key", new RoomKeyItem(new Item.Settings().maxCount(1)), EQUIPMENT_GROUP);
+    Item KEY = registrar.create("key", new KeyItem(new Item.Settings().maxCount(1)), EQUIPMENT_GROUP);
     Item LOCKPICK = registrar.create("lockpick", new LockpickItem(new Item.Settings().maxCount(1)), EQUIPMENT_GROUP);
     Item KNIFE = registrar.create("knife", new KnifeItem(new Item.Settings().maxCount(1)), EQUIPMENT_GROUP);
     Item REVOLVER = registrar.create("revolver", new RevolverItem(new Item.Settings().maxCount(1)), EQUIPMENT_GROUP);
@@ -41,7 +39,7 @@ public interface TrainMurderMysteryItems {
                 .build());
         Registry.register(Registries.ITEM_GROUP, EQUIPMENT_GROUP, FabricItemGroup.builder()
                 .displayName(Text.translatable("itemGroup.trainmurdermystery.equipment"))
-                .icon(() -> new ItemStack(TrainMurderMysteryItems.ROOM_KEY))
+                .icon(() -> new ItemStack(TrainMurderMysteryItems.KEY))
                 .build());
     }
 }

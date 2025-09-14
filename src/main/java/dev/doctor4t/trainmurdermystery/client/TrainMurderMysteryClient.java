@@ -7,12 +7,12 @@ import dev.doctor4t.trainmurdermystery.TrainMurderMystery;
 import dev.doctor4t.trainmurdermystery.cca.TrainMurderMysteryComponents;
 import dev.doctor4t.trainmurdermystery.client.model.TrainMurderMysteryEntityModelLayers;
 import dev.doctor4t.trainmurdermystery.client.render.block_entity.SmallDoorBlockEntityRenderer;
+import dev.doctor4t.trainmurdermystery.client.util.TMMItemTooltips;
 import dev.doctor4t.trainmurdermystery.index.*;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.fabric.api.client.model.loading.v1.ModelLoadingPlugin;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.block.Block;
@@ -23,9 +23,7 @@ import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.client.render.entity.EmptyEntityRenderer;
 import net.minecraft.client.render.model.UnbakedModel;
 import net.minecraft.client.util.ModelIdentifier;
-import net.minecraft.entity.player.ItemCooldownManager;
 import net.minecraft.registry.Registries;
-import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 
@@ -118,27 +116,7 @@ public class TrainMurderMysteryClient implements ClientModInitializer {
         OptionLocker.overrideOption("renderDistance", 32);
 
         // Item tooltips
-        ItemTooltipCallback.EVENT.register((itemStack, tooltipContext, tooltipType, list) -> {
-            if (itemStack.isOf(TrainMurderMysteryItems.KNIFE)) {
-                ItemCooldownManager itemCooldownManager = MinecraftClient.getInstance().player.getItemCooldownManager();
-                if (itemCooldownManager.isCoolingDown(TrainMurderMysteryItems.KNIFE)) {
-                    ItemCooldownManager.Entry knifeEntry = itemCooldownManager.entries.get(TrainMurderMysteryItems.KNIFE);
-                    int timeLeft = knifeEntry.endTick -  itemCooldownManager.tick;
-
-                    if (timeLeft > 0) {
-                        int minutes = (int) Math.floor((double) timeLeft / 1200);
-                        int seconds = (timeLeft - (minutes  * 1200)) / 20;
-                        list.add(Text.translatable("tip.knife.cooldown", minutes + "m" + (seconds > 0 ? seconds + "s" : "")).withColor(0xC90000));
-                    }
-                }
-
-                int color = 0x808080;
-                int tooltipCount = 5;
-                for (int i = 1; i <= tooltipCount; i++) {
-                    list.add(Text.translatable("tip.knife.tooltip"+i).withColor(color));
-                }
-            }
-        });
+        TMMItemTooltips.addTooltips();
     }
 
     public static boolean isSkyVisibleAdjacent(ClientPlayerEntity player) {

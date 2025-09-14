@@ -240,11 +240,11 @@
 		"subtitle": "subtitles.block.door.locked"
 	},
 
-	"item.room_key.door": {
+	"item.key.door": {
 		"sounds": [
-			"trainmurdermystery:item/room_key_door"
+			"trainmurdermystery:item/key_door"
 		],
-		"subtitle": "subtitles.item.room_key.door"
+		"subtitle": "subtitles.item.key.door"
 	},
 	"item.lockpick.door": {
 		"sounds": [

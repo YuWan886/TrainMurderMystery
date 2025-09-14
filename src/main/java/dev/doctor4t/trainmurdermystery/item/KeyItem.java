@@ -11,14 +11,17 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class RoomKeyItem extends Item {
-    public RoomKeyItem(Settings settings) {
+import java.util.List;
+
+public class KeyItem extends Item {
+    public KeyItem(Settings settings) {
         super(settings);
     }
 
@@ -44,7 +47,7 @@ public class RoomKeyItem extends Item {
                         if (roomName.equals(entity.getKeyName()) || entity.getKeyName().equals("")) {
                             SmallDoorBlock.toggleDoor(state, world, entity, lowerPos);
                             if (!world.isClient)
-                                world.playSound(null, lowerPos.getX() + .5f, lowerPos.getY() + 1, lowerPos.getZ() + .5f, TrainMurderMysterySounds.ITEM_ROOM_KEY_DOOR, SoundCategory.BLOCKS, 1f, 1f);
+                                world.playSound(null, lowerPos.getX() + .5f, lowerPos.getY() + 1, lowerPos.getZ() + .5f, TrainMurderMysterySounds.ITEM_KEY_DOOR, SoundCategory.BLOCKS, 1f, 1f);
                             return ActionResult.SUCCESS;
                         } else {
                             if (!world.isClient) {
@@ -63,6 +66,4 @@ public class RoomKeyItem extends Item {
 
         return super.useOnBlock(context);
     }
-
-
 }

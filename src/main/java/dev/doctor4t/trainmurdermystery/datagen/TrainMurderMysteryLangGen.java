@@ -192,7 +192,7 @@ public class TrainMurderMysteryLangGen extends FabricLanguageProvider {
         builder.add(TrainMurderMysteryBlocks.SMOOTH_NAVY_STEEL_PANEL, "Smooth Navy Steel panel");
         builder.add(TrainMurderMysteryBlocks.SMOOTH_NAVY_STEEL_WALL, "Smooth Navy Steel Wall");
 
-        builder.add(TrainMurderMysteryItems.ROOM_KEY, "Room Key");
+        builder.add(TrainMurderMysteryItems.KEY, "Key");
         builder.add(TrainMurderMysteryItems.LOCKPICK, "Lockpick");
         builder.add(TrainMurderMysteryItems.KNIFE, "Knife");
         builder.add(TrainMurderMysteryItems.REVOLVER, "Revolver");
@@ -212,12 +212,13 @@ public class TrainMurderMysteryLangGen extends FabricLanguageProvider {
 
         builder.add("tip.door.requires_key", "This door is locked and requires a key to be opened.");
         builder.add("tip.door.requires_different_key", "This door is locked and requires a different key to be opened.");
-        builder.add("tip.knife.tooltip1", "Right-click to use, hold for a");
-        builder.add("tip.knife.tooltip2", "second and get close to your victim!");
-        builder.add("tip.knife.tooltip3", "After a kill, cannot be used for 3 minutes.");
-        builder.add("tip.knife.tooltip4", "Can also be used to push players off");
-        builder.add("tip.knife.tooltip5", "the train with an attack (no cooldown).");
+
+        builder.add("tip.knife.tooltip1", "Right-click to use, hold for a second and get close to your victim!");
+        builder.add("tip.knife.tooltip2", "After a kill, cannot be used for 3 minutes.");
+        builder.add("tip.knife.tooltip3", "Can also be used to push players off the train with an attack (no cooldown).");
         builder.add("tip.knife.cooldown", "Thirst satiated! Cannot kill for %s");
+        builder.add("tip.lockpick.tooltip1", "Use on any door to open.");
+        builder.add("tip.lockpick.tooltip2", "Sneak-use on a door to lock it for 1 minute.");
 
         builder.add("game.win.hitmen", "All targets were eliminated: The Hitmen win!");
         builder.add("game.win.passengers", "All hitmen were eliminated: The Passengers win!");

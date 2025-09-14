@@ -1,7 +1,7 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "trainmurdermystery:item/room_key"
+        "layer0": "trainmurdermystery:item/key"
     },
     "display": {
         "thirdperson_righthand": {
