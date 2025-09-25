@@ -75,6 +75,7 @@
   "block.trainmurdermystery.green_lounge_couch": "Green Lounge Couch",
   "block.trainmurdermystery.hull_glass": "Hull Glass",
   "block.trainmurdermystery.jungle_branch": "Jungle Branch",
+  "block.trainmurdermystery.light_barrier": "Light Barrier",
   "block.trainmurdermystery.mahogany_bookshelf": "Mahogany Bookshelf",
   "block.trainmurdermystery.mahogany_cabinet": "Mahogany Cabinet",
   "block.trainmurdermystery.mahogany_herringbone": "Mahogany Herringbone",
@@ -187,6 +188,7 @@
   "container.cabinet": "Cabinet",
   "container.cargo_box": "Cargo Box",
   "entity.trainmurdermystery.firecracker": "Firecracker",
+  "entity.trainmurdermystery.grenade": "Grenade",
   "entity.trainmurdermystery.player_body": "Player Body",
   "entity.trainmurdermystery.seat": "Seat",
   "game.player.stung": "You feel something stinging you in your sleep.",
@@ -250,7 +252,6 @@
   "tip.letter.pamphlet.tooltip2": "La Sirène wishes you a pleasant and safe voyage.",
   "tip.lockpick.tooltip1": "Use on any locked door to open it (no cooldown)",
   "tip.lockpick.tooltip2": "Sneak-use on a door to jam it for 1 minute (disables the lockpick for 5 minutes)",
-  "tip.revolver.rounds": "%s/6 rounds left",
   "tip.revolver.tooltip1": "Right-click to use, point and shoot",
-  "tip.revolver.tooltip2": "Can be used to shoot a door and open it permanently (only glass and wooden doors)"
+  "tip.revolver.tooltip2": "Drops if you kill an innocent"
 }

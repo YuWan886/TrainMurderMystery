@@ -16,6 +16,7 @@ import net.minecraft.block.enums.BlockHalf;
 import net.minecraft.data.client.*;
 import net.minecraft.data.family.BlockFamily;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
@@ -335,6 +336,7 @@ public class TrainMurderMysteryModelGen extends FabricModelProvider {
         this.registerPanel(generator, TMMBlocks.BARRIER_PANEL, TMM.id("block/barrier_panel"));
         generator.registerSimpleState(TMMBlocks.FOOD_PLATTER);
         generator.registerNorthDefaultHorizontalRotation(TMMBlocks.DRINK_TRAY);
+        generator.registerItemModel(TMMBlocks.LIGHT_BARRIER);
     }
 
     public static final Model SMALL_ITEM = item("small_item", TextureKey.LAYER0);

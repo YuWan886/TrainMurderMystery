@@ -110,6 +110,7 @@ public class TMM implements ModInitializer {
 // TORECORD: - Psycho mode (wanted to have an anonymous killer originally for the horror element, this also allows the hitman to go crazy how some wanted to)
 //              Ambience can be heard by all players, so you know when to run. Also gives a use to rooms as you can hide in them
 // TORECORD: - Light turn off item + true darkness (increases the horror aspect + amazing scenario of lights turning off and someone being dead when they turn back on + blackout and psycho mode)
+//              True darkness doesn't work that well because of skylight seeping into the block, add a light barrier block that blocks it from entering
 // TODO: - Firecracker (luring people, shooting the gun in spectator often led to people rushing in from curiosity, allowing the hitman to manipulate players)
 // TODO: - Note (allows the hitman to leave messages, fun for encouraging the roleplay aspect)
 

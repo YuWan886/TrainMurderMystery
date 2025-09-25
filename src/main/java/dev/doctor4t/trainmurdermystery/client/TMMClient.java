@@ -125,7 +125,8 @@ public class TMMClient implements ClientModInitializer {
                 TMMBlocks.WHEEL,
                 TMMBlocks.BARRIER_PANEL,
                 TMMBlocks.FOOD_PLATTER,
-                TMMBlocks.DRINK_TRAY
+                TMMBlocks.DRINK_TRAY,
+                TMMBlocks.LIGHT_BARRIER
         );
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(),
                 TMMBlocks.RHOMBUS_GLASS,
@@ -170,7 +171,7 @@ public class TMMClient implements ClientModInitializer {
         AmbienceUtil.registerBackgroundAmbience(new BackgroundAmbience(TMMSounds.AMBIENT_TRAIN_INSIDE, player -> isTrainMoving() && !TMM.isSkyVisibleAdjacent(player), 20));
         AmbienceUtil.registerBackgroundAmbience(new BackgroundAmbience(TMMSounds.AMBIENT_TRAIN_OUTSIDE, player -> isTrainMoving() && TMM.isSkyVisibleAdjacent(player), 20));
         AmbienceUtil.registerBackgroundAmbience(new BackgroundAmbience(TMMSounds.AMBIENT_PSYCHO_DRONE, player -> gameComponent.isPsychoActive(), 20));
-        AmbienceUtil.registerBlockEntityAmbience(TMMBlockEntities.SPRINKLER, new BlockEntityAmbience(TMMSounds.BLOCK_SPRINKLER_RUN, 0.5f, blockEntity -> blockEntity instanceof SprinklerBlockEntity sprinklerBlockEntity && sprinklerBlockEntity.isPowered(), 10));
+        AmbienceUtil.registerBlockEntityAmbience(TMMBlockEntities.SPRINKLER, new BlockEntityAmbience(TMMSounds.BLOCK_SPRINKLER_RUN, 0.5f, blockEntity -> blockEntity instanceof SprinklerBlockEntity sprinklerBlockEntity && sprinklerBlockEntity.isPowered(), 20));
 
         // Caching components
         ClientTickEvents.START_WORLD_TICK.register(clientWorld -> {

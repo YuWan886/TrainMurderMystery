@@ -21,12 +21,12 @@ public abstract class TrueDarknessLightmapTextureManagerMixin {
         MinecraftClient client = MinecraftClient.getInstance();
         ClientWorld world = client.world;
 
-        if (client.player != null && world != null) {
-            float f = MinecraftClient.getInstance().world.getSkyBrightness(1.0f);
-            float absLight = Math.abs(MathHelper.lerp(0, -.5f, .5f));
-            float l = (float) MathHelper.lerp(1 - Math.pow(0.01, absLight), 1f, f);
-            return new Vector3f(f, f, l).lerp(other, t);
-        }
+//        if (client.player != null && world != null) {
+//            float f = MinecraftClient.getInstance().world.getSkyBrightness(1.0f);
+//            float absLight = Math.abs(MathHelper.lerp(0, -.5f, .5f));
+//            float l = (float) MathHelper.lerp(1 - Math.pow(0.01, absLight), 1f, f);
+//            return new Vector3f(f, f, l).lerp(other, t);
+//        }
 
         return original.call(instance, other, t);
     }
@@ -39,7 +39,7 @@ public abstract class TrueDarknessLightmapTextureManagerMixin {
         if (client.player != null && world != null) {
 //            BlockPos blockPos = client.player.getBlockPos();
 //            float lightLevelScale = (float) world.getLightLevel(LightType.SKY, blockPos) / (float) world.getMaxLightLevel();
-            return original.call(instance, new Vector3f(1f, 1f, 1f), -.2f);
+            return original.call(instance, new Vector3f(.75f, .75f, .75f), -.04f);
         }
 
         return original.call(instance, other, t);
@@ -47,6 +47,6 @@ public abstract class TrueDarknessLightmapTextureManagerMixin {
 
     @ModifyVariable(method = "update", at = @At(value = "STORE"), ordinal = 2)
     private float tmm$keepSkylight(float value) {
-        return TMMClient.isTrainMoving() ? 0.5f : value;
+        return value;
     }
 }

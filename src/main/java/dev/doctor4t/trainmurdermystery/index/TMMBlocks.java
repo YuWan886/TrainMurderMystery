@@ -3,6 +3,7 @@ package dev.doctor4t.trainmurdermystery.index;
 import dev.doctor4t.ratatouille.util.registrar.BlockRegistrar;
 import dev.doctor4t.trainmurdermystery.TMM;
 import dev.doctor4t.trainmurdermystery.block.*;
+import dev.doctor4t.trainmurdermystery.util.BlockSettingsAdditions;
 import net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeBuilder;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.minecraft.block.*;
@@ -236,6 +237,7 @@ public interface TMMBlocks {
 
     // Op
     Block BARRIER_PANEL = registrar.createWithItem("barrier_panel", new BarrierPanelBlock(AbstractBlock.Settings.copy(NAVY_STEEL_PANEL).strength(-1.0F, 3600000.8F).nonOpaque().sounds(BlockSoundGroup.STONE)));
+    Block LIGHT_BARRIER = registrar.createWithItem("light_barrier", new BarrierBlock(((BlockSettingsAdditions)AbstractBlock.Settings.copy(Blocks.BEDROCK)).tmm$setCollidable(false)));
 
     private static Block createBranch(String name, Block wood, BlockRegistrar registrar) {
         return registrar.createWithItem(name, new BranchBlock(AbstractBlock.Settings.copy(wood).mapColor(wood.getDefaultMapColor())), TMMItems.DECORATION_GROUP);
