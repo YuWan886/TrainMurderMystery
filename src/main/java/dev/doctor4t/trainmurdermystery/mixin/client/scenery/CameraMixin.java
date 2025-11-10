@@ -32,7 +32,7 @@ public class CameraMixin {
 
     @Inject(method = "update", at = @At("RETURN"))
     private void tmm$doScreenshake(BlockView area, Entity focusedEntity, boolean thirdPerson, boolean inverseView, float tickDelta, CallbackInfo ci) {
-        if (TMMClient.isTrainMoving()) {
+        if (TMMClient.isTrainMoving() && TMMClient.trainComponent.isScreenshake()) {
             Camera camera = (Camera) (Object) this;
 
             ClientPlayerEntity player = MinecraftClient.getInstance().player;

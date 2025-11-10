@@ -19,6 +19,7 @@ public class TrainWorldComponent implements AutoSyncedComponent, ServerTickingCo
     private float trainSpeed = 0; // im km/h
     private int time = 0;
     private boolean snow = true;
+    private boolean isScreenshake = true;
     private TimeOfDay timeOfDay = TimeOfDay.NIGHT;
 
     public TrainWorldComponent(World world) {
@@ -53,6 +54,15 @@ public class TrainWorldComponent implements AutoSyncedComponent, ServerTickingCo
 
     public void setSnow(boolean snow) {
         this.snow = snow;
+        this.sync();
+    }
+
+    public boolean isScreenshake() {
+        return isScreenshake;
+    }
+
+    public void setScreenshake(boolean isScreenshake) {
+        this.isScreenshake = isScreenshake;
         this.sync();
     }
 

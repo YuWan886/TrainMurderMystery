@@ -14,6 +14,9 @@ public class SetVisualCommand {
                 .then(CommandManager.literal("snow")
                         .then(CommandManager.argument("enabled", BoolArgumentType.bool())
                                 .executes(context -> executeSnow(context.getSource(), BoolArgumentType.getBool(context, "enabled")))))
+                .then(CommandManager.literal("screenshake")
+                        .then(CommandManager.argument("enabled", BoolArgumentType.bool())
+                                .executes(context -> executeScreenshake(context.getSource(), BoolArgumentType.getBool(context, "enabled")))))
                 .then(CommandManager.literal("time")
                         .then(CommandManager.argument("timeOfDay", TimeOfDayArgumentType.timeofday())
                                 .executes(context -> executeTimeOfDay(context.getSource(), TimeOfDayArgumentType.getTimeofday(context, "timeOfDay")))))
@@ -23,6 +26,12 @@ public class SetVisualCommand {
     private static int executeSnow(ServerCommandSource source, boolean enabled) {
         TrainWorldComponent trainWorldComponent = TrainWorldComponent.KEY.get(source.getWorld());
         trainWorldComponent.setSnow(enabled);
+        return 1;
+    }
+
+    private static int executeScreenshake(ServerCommandSource source, boolean enabled) {
+        TrainWorldComponent trainWorldComponent = TrainWorldComponent.KEY.get(source.getWorld());
+        trainWorldComponent.setScreenshake(enabled);
         return 1;
     }
 
