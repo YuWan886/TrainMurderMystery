@@ -282,7 +282,7 @@ public class GameWorldComponent implements AutoSyncedComponent, ClientTickingCom
             TrainWorldComponent trainComponent = TrainWorldComponent.KEY.get(serverWorld);
 
             // spectator limits
-            if (trainComponent.getTrainSpeed() > 0) {
+            if (trainComponent.getSpeed() > 0) {
                 for (ServerPlayerEntity player : serverWorld.getPlayers()) {
                     if (!GameFunctions.isPlayerAliveAndSurvival(player) && isBound()) {
                         GameFunctions.limitPlayerToBox(player, GameConstants.PLAY_AREA);

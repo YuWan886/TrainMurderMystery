@@ -156,7 +156,7 @@ public class GameFunctions {
     }
 
     private static void baseInitialize(ServerWorld world, TrainWorldComponent trainComponent, GameWorldComponent gameComponent, List<ServerPlayerEntity> players) {
-        trainComponent.setTrainSpeed(130);
+        trainComponent.setSpeed(130);
         WorldBlackoutComponent.KEY.get(world).reset();
 
         world.getGameRules().get(GameRules.KEEP_INVENTORY).set(true, world.getServer());
@@ -260,7 +260,7 @@ public class GameFunctions {
     public static void finalizeGame(ServerWorld world) {
         WorldBlackoutComponent.KEY.get(world).reset();
         TrainWorldComponent trainComponent = TrainWorldComponent.KEY.get(world);
-        trainComponent.setTrainSpeed(0);
+        trainComponent.setSpeed(0);
         trainComponent.setTimeOfDay(TrainWorldComponent.TimeOfDay.DAY);
 
         // reset train

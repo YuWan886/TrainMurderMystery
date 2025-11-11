@@ -292,11 +292,11 @@ public class TMMClient implements ClientModInitializer {
     }
 
     public static float getTrainSpeed() {
-        return trainComponent.getTrainSpeed();
+        return trainComponent.getSpeed();
     }
 
     public static boolean isTrainMoving() {
-        return trainComponent != null && trainComponent.getTrainSpeed() > 0;
+        return trainComponent != null && trainComponent.getSpeed() > 0;
     }
 
     public static class CustomModelProvider implements ModelLoadingPlugin {

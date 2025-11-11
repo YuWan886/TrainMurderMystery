@@ -16,7 +16,7 @@ public class TrainWorldComponent implements AutoSyncedComponent, ServerTickingCo
     public static final ComponentKey<TrainWorldComponent> KEY = ComponentRegistry.getOrCreate(TMM.id("train"), TrainWorldComponent.class);
 
     private final World world;
-    private float trainSpeed = 0; // im km/h
+    private int speed = 0; // im km/h
     private int time = 0;
     private boolean snow = true;
     private boolean fog = true;
@@ -31,13 +31,13 @@ public class TrainWorldComponent implements AutoSyncedComponent, ServerTickingCo
         TrainWorldComponent.KEY.sync(this.world);
     }
 
-    public void setTrainSpeed(float trainSpeed) {
-        this.trainSpeed = trainSpeed;
+    public void setSpeed(int speed) {
+        this.speed = speed;
         this.sync();
     }
 
-    public float getTrainSpeed() {
-        return trainSpeed;
+    public int getSpeed() {
+        return speed;
     }
 
     public float getTime() {
@@ -87,7 +87,7 @@ public class TrainWorldComponent implements AutoSyncedComponent, ServerTickingCo
 
     @Override
     public void readFromNbt(NbtCompound nbtCompound, RegistryWrapper.WrapperLookup wrapperLookup) {
-        this.trainSpeed = nbtCompound.getFloat("Speed");
+        this.setSpeed(nbtCompound.getInt("Speed"));
         this.setTime(nbtCompound.getInt("Time"));
         this.setSnow(nbtCompound.getBoolean("Snow"));
         this.setFog(nbtCompound.getBoolean("Fog"));
@@ -97,7 +97,7 @@ public class TrainWorldComponent implements AutoSyncedComponent, ServerTickingCo
 
     @Override
     public void writeToNbt(NbtCompound nbtCompound, RegistryWrapper.WrapperLookup wrapperLookup) {
-        nbtCompound.putFloat("Speed", trainSpeed);
+        nbtCompound.putInt("Speed", speed);
         nbtCompound.putInt("Time", time);
         nbtCompound.putBoolean("Snow", snow);
         nbtCompound.putBoolean("Fog", fog);
@@ -111,7 +111,7 @@ public class TrainWorldComponent implements AutoSyncedComponent, ServerTickingCo
     }
 
     private void tickTime() {
-        if (trainSpeed > 0) {
+        if (speed > 0) {
             time++;
         } else {
             time = 0;
