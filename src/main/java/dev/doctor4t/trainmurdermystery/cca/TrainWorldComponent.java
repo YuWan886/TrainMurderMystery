@@ -20,7 +20,8 @@ public class TrainWorldComponent implements AutoSyncedComponent, ServerTickingCo
     private int time = 0;
     private boolean snow = true;
     private boolean fog = true;
-    private boolean isScreenshake = true;
+    private boolean screenshake = true;
+    private boolean hud = true;
     private TimeOfDay timeOfDay = TimeOfDay.NIGHT;
 
     public TrainWorldComponent(World world) {
@@ -68,11 +69,20 @@ public class TrainWorldComponent implements AutoSyncedComponent, ServerTickingCo
     }
 
     public boolean isScreenshake() {
-        return isScreenshake;
+        return screenshake;
     }
 
     public void setScreenshake(boolean isScreenshake) {
-        this.isScreenshake = isScreenshake;
+        this.screenshake = isScreenshake;
+        this.sync();
+    }
+
+    public boolean hasHud() {
+        return hud;
+    }
+
+    public void setHud(boolean hud) {
+        this.hud = hud;
         this.sync();
     }
 
@@ -92,6 +102,7 @@ public class TrainWorldComponent implements AutoSyncedComponent, ServerTickingCo
         this.setSnow(nbtCompound.getBoolean("Snow"));
         this.setFog(nbtCompound.getBoolean("Fog"));
         this.setScreenshake(nbtCompound.getBoolean("Screenshake"));
+        this.setHud(nbtCompound.getBoolean("Hud"));
         this.setTimeOfDay(TimeOfDay.valueOf(nbtCompound.getString("TimeOfDay")));
     }
 
@@ -101,7 +112,8 @@ public class TrainWorldComponent implements AutoSyncedComponent, ServerTickingCo
         nbtCompound.putInt("Time", time);
         nbtCompound.putBoolean("Snow", snow);
         nbtCompound.putBoolean("Fog", fog);
-        nbtCompound.putBoolean("Screenshake", isScreenshake);
+        nbtCompound.putBoolean("Screenshake", screenshake);
+        nbtCompound.putBoolean("Hud", hud);
         nbtCompound.putString("TimeOfDay", timeOfDay.name());
     }
 
@@ -129,7 +141,7 @@ public class TrainWorldComponent implements AutoSyncedComponent, ServerTickingCo
     public enum TimeOfDay implements StringIdentifiable {
         DAY(6000),
         NIGHT(18000),
-        DUSK(12800);
+        SUNDOWN(12800);
 
         final int time;
 

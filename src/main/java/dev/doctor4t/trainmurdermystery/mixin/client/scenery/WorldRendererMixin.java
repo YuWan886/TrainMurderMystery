@@ -44,13 +44,13 @@ public abstract class WorldRendererMixin {
 
     @WrapOperation(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/WorldRenderer;renderSky(Lorg/joml/Matrix4f;Lorg/joml/Matrix4f;FLnet/minecraft/client/render/Camera;ZLjava/lang/Runnable;)V"))
     public void tmm$disableSky(WorldRenderer instance, Matrix4f matrix4f, Matrix4f projectionMatrix, float tickDelta, Camera camera, boolean thickFog, Runnable fogCallback, Operation<Void> original) {
-        if (!TMMClient.isTrainMoving() || TMMClient.trainComponent.getTimeOfDay() == TrainWorldComponent.TimeOfDay.DUSK)
+        if (!TMMClient.isTrainMoving() || TMMClient.trainComponent.getTimeOfDay() == TrainWorldComponent.TimeOfDay.SUNDOWN)
             original.call(instance, matrix4f, projectionMatrix, tickDelta, camera, thickFog, fogCallback);
     }
 
     @WrapOperation(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/BackgroundRenderer;applyFog(Lnet/minecraft/client/render/Camera;Lnet/minecraft/client/render/BackgroundRenderer$FogType;FZF)V"))
     public void tmm$applyBlizzardFog(Camera camera, BackgroundRenderer.FogType fogType, float viewDistance, boolean thickFog, float tickDelta, Operation<Void> original) {
-        if (TMMClient.trainComponent.isFoggy()) {
+        if (TMMClient.trainComponent != null && TMMClient.trainComponent.isFoggy()) {
             if (TMMClient.isTrainMoving()) {
                 tmm$doFog(0, 130);
             } else {
@@ -125,7 +125,7 @@ public abstract class WorldRendererMixin {
                             finalZ = v3;
                         }
 
-                        if (Math.abs(finalX) < (TMMClient.trainComponent.getTimeOfDay() == TrainWorldComponent.TimeOfDay.DUSK ? 320 : 160)) {
+                        if (Math.abs(finalX) < (TMMClient.trainComponent.getTimeOfDay() == TrainWorldComponent.TimeOfDay.SUNDOWN ? 320 : 160)) {
                             glUniform.set(
                                     finalX,
                                     finalY,

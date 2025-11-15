@@ -112,7 +112,7 @@ public class GameFunctions {
         trainComponent.setTimeOfDay(switch (gameMode) {
             case MURDER -> TrainWorldComponent.TimeOfDay.NIGHT;
             case DISCOVERY -> TrainWorldComponent.TimeOfDay.DAY;
-            case LOOSE_ENDS -> TrainWorldComponent.TimeOfDay.DUSK;
+            case LOOSE_ENDS -> TrainWorldComponent.TimeOfDay.SUNDOWN;
         });
         trainComponent.setSnow(true);
         baseInitialize(world, trainComponent, gameComponent, players);

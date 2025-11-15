@@ -38,15 +38,18 @@ public class InGameHudMixin {
 
     @Inject(method = "renderMainHud", at = @At("TAIL"))
     private void tmm$renderHud(DrawContext context, RenderTickCounter tickCounter, CallbackInfo ci) {
-        var player = this.client.player;
-        if (player == null) return;
-        var renderer = MinecraftClient.getInstance().textRenderer;
-        MoodRenderer.renderHud(player, renderer, context, tickCounter);
-        RoleNameRenderer.renderHud(renderer, player, context, tickCounter);
-        RoundTextRenderer.renderHud(renderer, player, context);
-        if (MinecraftClient.getInstance().currentScreen == null) StoreRenderer.renderHud(renderer, player, context, tickCounter.getTickDelta(true));
-        TimeRenderer.renderHud(renderer, player, context, tickCounter.getTickDelta(true));
-        LobbyPlayersRenderer.renderHud(renderer, player, context);
+        if (TMMClient.trainComponent.hasHud()) {
+            var player = this.client.player;
+            if (player == null) return;
+            var renderer = MinecraftClient.getInstance().textRenderer;
+            MoodRenderer.renderHud(player, renderer, context, tickCounter);
+            RoleNameRenderer.renderHud(renderer, player, context, tickCounter);
+            RoundTextRenderer.renderHud(renderer, player, context);
+            if (MinecraftClient.getInstance().currentScreen == null)
+                StoreRenderer.renderHud(renderer, player, context, tickCounter.getTickDelta(true));
+            TimeRenderer.renderHud(renderer, player, context, tickCounter.getTickDelta(true));
+            LobbyPlayersRenderer.renderHud(renderer, player, context);
+        }
     }
 
     @WrapMethod(method = "renderCrosshair")
