@@ -2,6 +2,7 @@ package dev.doctor4t.trainmurdermystery.util;
 
 import dev.doctor4t.trainmurdermystery.TMM;
 import dev.doctor4t.trainmurdermystery.cca.GameWorldComponent;
+import dev.doctor4t.trainmurdermystery.event.AllowPlayerStabDeath;
 import dev.doctor4t.trainmurdermystery.game.GameConstants;
 import dev.doctor4t.trainmurdermystery.game.GameFunctions;
 import dev.doctor4t.trainmurdermystery.index.TMMItems;
@@ -30,6 +31,7 @@ public record KnifeStabPayload(int target) implements CustomPayload {
             var player = context.player();
             if (!(player.getServerWorld().getEntityById(payload.target()) instanceof PlayerEntity target)) return;
             if (target.distanceTo(player) > 3.0) return;
+            if (!AllowPlayerStabDeath.EVENT.invoker().allowStab(player)) return;
             GameFunctions.killPlayer(target, true, player);
             target.playSound(TMMSounds.ITEM_KNIFE_STAB, 1.0f, 1.0f);
             player.swingHand(Hand.MAIN_HAND);
