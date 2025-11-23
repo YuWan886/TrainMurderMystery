@@ -1,4 +1,10 @@
 ------------------------------------------------------
+The Last Voyage of the Harpy Express 1.1.3 - 1.21.1
+------------------------------------------------------
+- Fixed a game crash caused by attempting to render a player head of a player you've never seen in the tab/winner menu, thanks to TheDeafCreeper 🐀❤️
+- Added Norwegian (Bokmål) language support, thanks to kaleidoscopikatt 🐀❤️
+
+------------------------------------------------------
 The Last Voyage of the Harpy Express 1.1.2.1 - 1.21.1
 ------------------------------------------------------
 - Hotfix to prevent a server crash by removing one of the new events for addons
