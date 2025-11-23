@@ -1,4 +1,16 @@
 ------------------------------------------------------
+The Last Voyage of the Harpy Express 1.1.4 - 1.21.1
+------------------------------------------------------
+- Fixed lobby not being visible in ultra performance mode
+- Reduced ledge outline shape and collision shape when not standing on it
+- Fixed train reset sometimes not happening
+- Interacting with an ornament will now interact with the block behind it, thanks to LevAlTru 🐀❤️
+- Turned items that can get hallucinated into an item tag, thanks to kaleidoscopikatt 🐀❤️
+- Added a new API function to allow custom roles to use Killer features, thanks to agmass 🐀❤️
+- Added a Chinese translation, thanks to ZeroIcceBear 🐀❤️
+- Updated Russian translation, thanks to TheBendy42 🐀❤️
+
+------------------------------------------------------
 The Last Voyage of the Harpy Express 1.1.3 - 1.21.1
 ------------------------------------------------------
 - Fixed a game crash caused by attempting to render a player head of a player you've never seen in the tab/winner menu, thanks to TheDeafCreeper 🐀❤️

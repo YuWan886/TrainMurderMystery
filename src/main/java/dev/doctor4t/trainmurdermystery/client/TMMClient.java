@@ -376,7 +376,7 @@ public class TMMClient implements ClientModInitializer {
     }
 
     public static boolean isKiller() {
-        return gameComponent != null && gameComponent.isRole(MinecraftClient.getInstance().player, TMMRoles.KILLER);
+        return gameComponent != null && gameComponent.canUseKillerFeatures(MinecraftClient.getInstance().player);
     }
 
     public static int getInstinctHighlight(Entity target) {
@@ -386,7 +386,7 @@ public class TMMClient implements ClientModInitializer {
             return 0xDB9D00;
         if (target instanceof PlayerEntity player) {
             if (GameFunctions.isPlayerSpectatingOrCreative(player)) return -1;
-            if (isKiller() && gameComponent.isRole(player, TMMRoles.KILLER)) return MathHelper.hsvToRgb(0F, 1.0F, 0.6F);
+            if (isKiller() && gameComponent.canUseKillerFeatures(player)) return MathHelper.hsvToRgb(0F, 1.0F, 0.6F);
             if (gameComponent.isInnocent(player)) {
                 var mood = PlayerMoodComponent.KEY.get(target).getMood();
                 if (mood < GameConstants.DEPRESSIVE_MOOD_THRESHOLD) {

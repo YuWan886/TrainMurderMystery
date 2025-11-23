@@ -88,7 +88,7 @@ public class MoodRenderer {
             moodOffset = MathHelper.lerp(tickCounter.getTickDelta(true) / 8, moodOffset, maxRenderer.offset);
             moodTextWidth = MathHelper.lerp(tickCounter.getTickDelta(true) / 32, moodTextWidth, textRenderer.getWidth(maxRenderer.text));
         }
-        if (gameWorldComponent.isRole(player, TMMRoles.KILLER)) {
+        if (gameWorldComponent.canUseKillerFeatures(player)) {
             renderKiller(textRenderer, context);
         } else {
             renderCivilian(textRenderer, context, oldMood);

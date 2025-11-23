@@ -146,7 +146,7 @@ public class ScoreboardRoleSelectorComponent implements AutoSyncedComponent {
         var vigilantes = new ArrayList<ServerPlayerEntity>();
         for (var uuid : this.forcedVigilantes) {
             var player = world.getPlayerByUuid(uuid);
-            if (player instanceof ServerPlayerEntity serverPlayer && players.contains(serverPlayer) && !gameComponent.isRole(serverPlayer, TMMRoles.KILLER)) {
+            if (player instanceof ServerPlayerEntity serverPlayer && players.contains(serverPlayer) && !gameComponent.canUseKillerFeatures(player)) {
                 player.giveItemStack(new ItemStack(TMMItems.REVOLVER));
                 gameComponent.addRole(player, TMMRoles.VIGILANTE);
                 vigilanteCount--;

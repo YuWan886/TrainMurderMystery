@@ -210,7 +210,7 @@ public class GameFunctions {
         GameTimeComponent.KEY.get(world).reset();
 
         // reset train
-        tryResetTrain(world);
+        gameComponent.queueTrainReset();
 
         // select rooms
         Collections.shuffle(players);
@@ -265,9 +265,6 @@ public class GameFunctions {
         TrainWorldComponent trainComponent = TrainWorldComponent.KEY.get(world);
         trainComponent.setSpeed(0);
         trainComponent.setTimeOfDay(TrainWorldComponent.TimeOfDay.DAY);
-
-        // reset train
-        tryResetTrain(world);
 
         // discard all player bodies
         for (var body : world.getEntitiesByType(TMMEntities.PLAYER_BODY, playerBodyEntity -> true)) body.discard();

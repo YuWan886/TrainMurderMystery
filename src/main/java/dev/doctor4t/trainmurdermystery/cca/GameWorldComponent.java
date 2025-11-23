@@ -149,6 +149,16 @@ public class GameWorldComponent implements AutoSyncedComponent, ServerTickingCom
         return roles.get(uuid);
     }
 
+    public List<UUID> getAllKillerTeamPlayers() {
+        List<UUID> ret = new ArrayList<>();
+        roles.forEach((uuid, playerRole) -> {
+            if (playerRole.canUseKiller()) {
+                ret.add(uuid);
+            }
+        });
+
+        return ret;
+    }
     public List<UUID> getAllWithRole(TMMRoles.Role role) {
         List<UUID> ret = new ArrayList<>();
         roles.forEach((uuid, playerRole) -> {
@@ -168,6 +178,9 @@ public class GameWorldComponent implements AutoSyncedComponent, ServerTickingCom
         return this.roles.get(uuid) == role;
     }
 
+    public boolean canUseKillerFeatures(@NotNull PlayerEntity player) {
+        return getRole(player) != null && getRole(player).canUseKiller();
+    }
     public boolean isInnocent(@NotNull PlayerEntity player) {
         return getRole(player) == null || getRole(player).isInnocent();
     }
@@ -178,7 +191,7 @@ public class GameWorldComponent implements AutoSyncedComponent, ServerTickingCom
     }
 
     public void queueTrainReset() {
-        ticksUntilNextResetAttempt = 20;
+        ticksUntilNextResetAttempt = 10;
     }
 
     public int getPsychosActive() {
@@ -286,9 +299,11 @@ public class GameWorldComponent implements AutoSyncedComponent, ServerTickingCom
     public void serverTick() {
         tickCommon();
 
-        if (ticksUntilNextResetAttempt-- == 0) {
+        if (--ticksUntilNextResetAttempt == 0) {
             if (GameFunctions.tryResetTrain((ServerWorld) this.world)) {
-                ticksUntilNextResetAttempt = 5;
+                queueTrainReset();
+            } else {
+                ticksUntilNextResetAttempt = -1;
             }
         }
 
@@ -341,7 +356,7 @@ public class GameWorldComponent implements AutoSyncedComponent, ServerTickingCom
                     // check passenger win condition (all killers are dead)
                     if (winStatus == GameFunctions.WinStatus.NONE) {
                         winStatus = GameFunctions.WinStatus.PASSENGERS;
-                        for (UUID player : this.getAllWithRole(TMMRoles.KILLER)) {
+                        for (UUID player : this.getAllKillerTeamPlayers()) {
                             if (!GameFunctions.isPlayerEliminated(serverWorld.getPlayerByUuid(player))) {
                                 winStatus = GameFunctions.WinStatus.NONE;
                             }
@@ -382,7 +397,7 @@ public class GameWorldComponent implements AutoSyncedComponent, ServerTickingCom
                 if (winStatus != GameFunctions.WinStatus.NONE && this.gameStatus == GameStatus.ACTIVE) {
                     GameRoundEndComponent.KEY.get(serverWorld).setRoundEndData(serverWorld.getPlayers(), winStatus);
                     for (ServerPlayerEntity player : serverWorld.getPlayers()) {
-                        if (winStatus == GameFunctions.WinStatus.TIME && this.isRole(player, TMMRoles.KILLER))
+                        if (winStatus == GameFunctions.WinStatus.TIME && this.canUseKillerFeatures(player))
                             GameFunctions.killPlayer(player, true, null);
                     }
                     GameFunctions.stopGame(serverWorld);
