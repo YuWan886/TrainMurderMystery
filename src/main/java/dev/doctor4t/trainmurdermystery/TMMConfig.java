@@ -10,6 +10,10 @@ public class TMMConfig extends MidnightConfig {
     public static boolean ultraPerfMode = false;
     @Entry
     public static boolean disableScreenShake = false;
+    @Entry
+    public static int killerCount = 1;
+    @Entry
+    public static int vigilanteCount = 1;
 
     @Override
     public void writeChanges(String modid) {

@@ -140,5 +140,12 @@ public class TMMLangGen extends FabricLanguageProvider {
         builder.add("trainmurdermystery.midnightconfig.disableScreenShake", "Disable Screen Shake");
 
         builder.add("credits.trainmurdermystery.thank_you", "Thank you for playing The Last Voyage of the Harpy Express!\nMe and my team spent a lot of time working\non this mod and we hope you enjoy it.\nIf you do and wish to make a video or stream\nplease make sure to credit my channel,\nvideo and the mod page!\n - RAT / doctor4t");
+        builder.add("I should write something first", "I should write something first");
+        builder.add("Purchase Failed", "Purchase Failed");
+        builder.add("Edit Note", "Edit Note");
+        builder.add("Server is reserved to doctor4t supporters.", "Server is reserved to doctor4t supporters.");
+        builder.add("Role Weights:", "Role Weights:");
+        builder.add("trainmurdermystery.midnightconfig.killerCount", "Killer Count");
+        builder.add("trainmurdermystery.midnighteonfig.vigilanteCount", "Viglilante Count");
     }
 }

@@ -1,4 +1,9 @@
 {
+  "Edit Note": "Edit Note",
+  "I should write something first": "I should write something first",
+  "Purchase Failed": "Purchase Failed",
+  "Role Weights:": "Role Weights:",
+  "Server is reserved to doctor4t supporters.": "Server is reserved to doctor4t supporters.",
   "announcement.goal.civilian": "Stay safe and survive till the end of the ride.",
   "announcement.goal.killer": "Eliminate a passenger to succeed, before time runs out.",
   "announcement.goal.vigilante": "Eliminate any murderers and protect the civilians.",
@@ -341,7 +346,9 @@
   "tip.letter.tooltip2": "La Sirène wishes you a pleasant and safe voyage.",
   "tmm.gui.reset": "Clear",
   "trainmurdermystery.midnightconfig.disableScreenShake": "Disable Screen Shake",
+  "trainmurdermystery.midnightconfig.killerCount": "Killer Count",
   "trainmurdermystery.midnightconfig.title": "The Last Voyage of the Harpy Express - Config",
   "trainmurdermystery.midnightconfig.ultraPerfMode": "Ultra Performance Mode",
-  "trainmurdermystery.midnightconfig.ultraPerfMode.tooltip": "Disables scenery for a worse visual experience but maximum performance. Lowers render distance to 2."
+  "trainmurdermystery.midnightconfig.ultraPerfMode.tooltip": "Disables scenery for a worse visual experience but maximum performance. Lowers render distance to 2.",
+  "trainmurdermystery.midnighteonfig.vigilanteCount": "Viglilante Count"
 }

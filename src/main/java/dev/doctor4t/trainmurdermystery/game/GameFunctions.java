@@ -2,6 +2,7 @@ package dev.doctor4t.trainmurdermystery.game;
 
 import com.google.common.collect.Lists;
 import dev.doctor4t.trainmurdermystery.TMM;
+import dev.doctor4t.trainmurdermystery.TMMConfig;
 import dev.doctor4t.trainmurdermystery.api.TMMRoles;
 import dev.doctor4t.trainmurdermystery.cca.*;
 import dev.doctor4t.trainmurdermystery.client.gui.RoleAnnouncementTexts;
@@ -151,9 +152,10 @@ public class GameFunctions {
     private static int assignRolesAndGetKillerCount(@NotNull ServerWorld world, @NotNull List<ServerPlayerEntity> players, GameWorldComponent gameComponent) {
         // select roles
         var roleSelector = ScoreboardRoleSelectorComponent.KEY.get(world.getScoreboard());
-        var killerCount = (int) Math.floor(players.size() * .2f);
+        var killerCount = TMMConfig.killerCount;
+        var vigilanteCount = TMMConfig.vigilanteCount;
         var total = roleSelector.assignKillers(world, gameComponent, players, killerCount);
-        roleSelector.assignVigilantes(world, gameComponent, players, killerCount);
+        roleSelector.assignVigilantes(world, gameComponent, players, vigilanteCount);
         return total;
     }
 
