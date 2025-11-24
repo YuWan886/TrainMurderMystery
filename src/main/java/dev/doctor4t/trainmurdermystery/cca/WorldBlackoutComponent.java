@@ -65,7 +65,7 @@ public class WorldBlackoutComponent implements AutoSyncedComponent, ServerTickin
                     var pos = new BlockPos(x, y, z);
                     var state = this.world.getBlockState(pos);
                     if (!state.contains(Properties.LIT) || !state.contains(TMMProperties.ACTIVE)) continue;
-                    var duration = GameConstants.BLACKOUT_MIN_DURATION + this.world.random.nextInt(GameConstants.BLACKOUT_MAX_DURATION - GameConstants.BLACKOUT_MIN_DURATION);
+                    var duration = GameConstants.getBlackoutMinDuration() + this.world.random.nextInt(GameConstants.getBlackoutMaxDuration() - GameConstants.getBlackoutMinDuration());
                     if (duration > this.ticks) this.ticks = duration;
                     var detail = new BlackoutDetails(pos, duration, state.get(Properties.LIT));
                     detail.init(this.world);

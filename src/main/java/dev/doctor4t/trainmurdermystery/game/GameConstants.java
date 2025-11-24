@@ -1,5 +1,7 @@
 package dev.doctor4t.trainmurdermystery.game;
 
+import dev.doctor4t.trainmurdermystery.TMM;
+import dev.doctor4t.trainmurdermystery.TMMConfig;
 import dev.doctor4t.trainmurdermystery.cca.PlayerShopComponent;
 import dev.doctor4t.trainmurdermystery.index.TMMItems;
 import dev.doctor4t.trainmurdermystery.util.ShopEntry;
@@ -11,6 +13,7 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +25,12 @@ public interface GameConstants {
     int FADE_TIME = 40;
     int FADE_PAUSE = 20;
     int MIN_PLAYER_COUNT = 6;
+    
+    // Role Configuration (Server-side, mutable via command)
+    class RoleConfig {
+        public static int killerCount = 1;
+        public static int vigilanteCount = 1;
+    }
 
     // Blocks
     int DOOR_AUTOCLOSE_TIME = getInTicks(0, 5);
@@ -29,16 +38,32 @@ public interface GameConstants {
     // Items
     Map<Item, Integer> ITEM_COOLDOWNS = new HashMap<>();
 
+    /**
+     * 初始化游戏常量
+     * 在mod初始化时调用
+     */
     static void init() {
-        ITEM_COOLDOWNS.put(TMMItems.KNIFE, getInTicks(1, 0));
-        ITEM_COOLDOWNS.put(TMMItems.REVOLVER, getInTicks(0, 10));
-        ITEM_COOLDOWNS.put(TMMItems.DERRINGER, getInTicks(0, 1));
-        ITEM_COOLDOWNS.put(TMMItems.GRENADE, getInTicks(5, 0));
-        ITEM_COOLDOWNS.put(TMMItems.LOCKPICK, getInTicks(3, 0));
-        ITEM_COOLDOWNS.put(TMMItems.CROWBAR, getInTicks(0, 10));
-        ITEM_COOLDOWNS.put(TMMItems.BODY_BAG, getInTicks(5, 0));
-        ITEM_COOLDOWNS.put(TMMItems.PSYCHO_MODE, getInTicks(5, 0));
-        ITEM_COOLDOWNS.put(TMMItems.BLACKOUT, getInTicks(3, 0));
+        reloadItemCooldowns();
+    }
+    
+    /**
+     * 重新加载物品冷却时间
+     * 可以在运行时调用以应用配置更改
+     */
+    static void reloadItemCooldowns() {
+        ITEM_COOLDOWNS.clear();
+        ITEM_COOLDOWNS.put(TMMItems.KNIFE, TMMConfig.knifeCooldown * 20);
+        ITEM_COOLDOWNS.put(TMMItems.REVOLVER, TMMConfig.revolverCooldown * 20);
+        ITEM_COOLDOWNS.put(TMMItems.DERRINGER, TMMConfig.derringerCooldown * 20);
+        ITEM_COOLDOWNS.put(TMMItems.GRENADE, TMMConfig.grenadeCooldown * 20);
+        ITEM_COOLDOWNS.put(TMMItems.LOCKPICK, TMMConfig.lockpickCooldown * 20);
+        ITEM_COOLDOWNS.put(TMMItems.CROWBAR, TMMConfig.crowbarCooldown * 20);
+        ITEM_COOLDOWNS.put(TMMItems.BODY_BAG, TMMConfig.bodyBagCooldown * 20);
+        ITEM_COOLDOWNS.put(TMMItems.PSYCHO_MODE, TMMConfig.psychoModeCooldown * 20);
+        ITEM_COOLDOWNS.put(TMMItems.BLACKOUT, TMMConfig.blackoutCooldown * 20);
+        
+        TMM.LOGGER.debug("物品冷却时间已重载: 小刀={}秒, 左轮={}秒", 
+            TMMConfig.knifeCooldown, TMMConfig.revolverCooldown);
     }
 
     int JAMMED_DOOR_TIME = getInTicks(1, 0);
@@ -73,45 +98,70 @@ public interface GameConstants {
     int ITEM_PSYCHOSIS_REROLL_TIME = 200;
 
     // Shop Variables
-    List<ShopEntry> SHOP_ENTRIES = List.of(
-            new ShopEntry(TMMItems.KNIFE.getDefaultStack(), 100, ShopEntry.Type.WEAPON),
-            new ShopEntry(TMMItems.REVOLVER.getDefaultStack(), 300, ShopEntry.Type.WEAPON),
-            new ShopEntry(TMMItems.GRENADE.getDefaultStack(), 350, ShopEntry.Type.WEAPON),
-            new ShopEntry(TMMItems.PSYCHO_MODE.getDefaultStack(), 300, ShopEntry.Type.WEAPON) {
-                @Override
-                public boolean onBuy(@NotNull PlayerEntity player) {
-                    return PlayerShopComponent.usePsychoMode(player);
-                }
-            },
-            new ShopEntry(TMMItems.POISON_VIAL.getDefaultStack(), 100, ShopEntry.Type.POISON),
-            new ShopEntry(TMMItems.SCORPION.getDefaultStack(), 50, ShopEntry.Type.POISON),
-            new ShopEntry(TMMItems.FIRECRACKER.getDefaultStack(), 10, ShopEntry.Type.TOOL),
-            new ShopEntry(TMMItems.LOCKPICK.getDefaultStack(), 50, ShopEntry.Type.TOOL),
-            new ShopEntry(TMMItems.CROWBAR.getDefaultStack(), 25, ShopEntry.Type.TOOL),
-            new ShopEntry(TMMItems.BODY_BAG.getDefaultStack(), 200, ShopEntry.Type.TOOL),
-            new ShopEntry(TMMItems.BLACKOUT.getDefaultStack(), 200, ShopEntry.Type.TOOL) {
-                @Override
-                public boolean onBuy(@NotNull PlayerEntity player) {
-                    return PlayerShopComponent.useBlackout(player);
-                }
-            },
-            new ShopEntry(new ItemStack(TMMItems.NOTE, 4), 10, ShopEntry.Type.TOOL)
-    );
-    int MONEY_START = 100;
-    Function<Long, Integer> PASSIVE_MONEY_TICKER = time -> {
-        if (time % getInTicks(0, 10) == 0) {
-            return 5;
-        }
-        return 0;
-    };
-    int MONEY_PER_KILL = 100;
-    int PSYCHO_MODE_ARMOUR = 1;
+    static List<ShopEntry> getShopEntries() {
+        List<ShopEntry> entries = new ArrayList<>();
+        entries.add(new ShopEntry(TMMItems.KNIFE.getDefaultStack(), TMMConfig.knifePrice, ShopEntry.Type.WEAPON));
+        entries.add(new ShopEntry(TMMItems.REVOLVER.getDefaultStack(), TMMConfig.revolverPrice, ShopEntry.Type.WEAPON));
+        entries.add(new ShopEntry(TMMItems.GRENADE.getDefaultStack(), TMMConfig.grenadePrice, ShopEntry.Type.WEAPON));
+        entries.add(new ShopEntry(TMMItems.PSYCHO_MODE.getDefaultStack(), TMMConfig.psychoModePrice, ShopEntry.Type.WEAPON) {
+            @Override
+            public boolean onBuy(@NotNull PlayerEntity player) {
+                return PlayerShopComponent.usePsychoMode(player);
+            }
+        });
+        entries.add(new ShopEntry(TMMItems.POISON_VIAL.getDefaultStack(), TMMConfig.poisonVialPrice, ShopEntry.Type.POISON));
+        entries.add(new ShopEntry(TMMItems.SCORPION.getDefaultStack(), TMMConfig.scorpionPrice, ShopEntry.Type.POISON));
+        entries.add(new ShopEntry(TMMItems.FIRECRACKER.getDefaultStack(), TMMConfig.firecrackerPrice, ShopEntry.Type.TOOL));
+        entries.add(new ShopEntry(TMMItems.LOCKPICK.getDefaultStack(), TMMConfig.lockpickPrice, ShopEntry.Type.TOOL));
+        entries.add(new ShopEntry(TMMItems.CROWBAR.getDefaultStack(), TMMConfig.crowbarPrice, ShopEntry.Type.TOOL));
+        entries.add(new ShopEntry(TMMItems.BODY_BAG.getDefaultStack(), TMMConfig.bodyBagPrice, ShopEntry.Type.TOOL));
+        entries.add(new ShopEntry(TMMItems.BLACKOUT.getDefaultStack(), TMMConfig.blackoutPrice, ShopEntry.Type.TOOL) {
+            @Override
+            public boolean onBuy(@NotNull PlayerEntity player) {
+                return PlayerShopComponent.useBlackout(player);
+            }
+        });
+        entries.add(new ShopEntry(new ItemStack(TMMItems.NOTE, 4), TMMConfig.notePrice, ShopEntry.Type.TOOL));
+        return entries;
+    }
+    
+    static int getMoneyStart() {
+        return TMMConfig.startingMoney;
+    }
+    
+    static Function<Long, Integer> getPassiveMoneyTicker() {
+        return time -> {
+            if (time % (TMMConfig.passiveMoneyInterval * 20) == 0) {
+                return TMMConfig.passiveMoneyAmount;
+            }
+            return 0;
+        };
+    }
+    
+    static int getMoneyPerKill() {
+        return TMMConfig.moneyPerKill;
+    }
+    
+    static int getPsychoModeArmour() {
+        return TMMConfig.psychoModeArmor;
+    }
 
     // Timers
-    int PSYCHO_TIMER = getInTicks(0, 30);
-    int FIRECRACKER_TIMER = getInTicks(0, 15);
-    int BLACKOUT_MIN_DURATION = getInTicks(0, 15);
-    int BLACKOUT_MAX_DURATION = getInTicks(0, 20);
+    static int getPsychoTimer() {
+        return TMMConfig.psychoModeDuration * 20;
+    }
+    
+    static int getFirecrackerTimer() {
+        return TMMConfig.firecrackerDuration * 20;
+    }
+    
+    static int getBlackoutMinDuration() {
+        return TMMConfig.blackoutMinDuration * 20;
+    }
+    
+    static int getBlackoutMaxDuration() {
+        return TMMConfig.blackoutMaxDuration * 20;
+    }
     int TIME_ON_CIVILIAN_KILL = getInTicks(1, 0);
 
     static int getInTicks(int minutes, int seconds) {

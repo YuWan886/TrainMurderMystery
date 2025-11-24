@@ -85,8 +85,8 @@ public class TMMClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        // Load config
-        TMMConfig.init(TMM.MOD_ID, TMMConfig.class);
+        // Note: Config is already initialized in TMM.java (server-side)
+        // No need to initialize it again here to avoid duplication
 
         // Initialize ScreenParticle
         handParticleManager = new HandParticleManager();
@@ -406,7 +406,7 @@ public class TMMClient implements ClientModInitializer {
         return instinctKeybind.isPressed() && ((isKiller() && isPlayerAliveAndInSurvival()) || isPlayerSpectatingOrCreative());
     }
 
-    public static int getLockedRenderDistance(boolean ultraPerfMode) {
+/*    public static int getLockedRenderDistance(boolean ultraPerfMode) {
         return ultraPerfMode ? 2 : 32;
-    }
+    }*/
 }

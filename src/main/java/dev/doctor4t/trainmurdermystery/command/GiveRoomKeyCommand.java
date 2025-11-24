@@ -26,7 +26,14 @@ public class GiveRoomKeyCommand {
     private static int giveRoomKey(ServerCommandSource source, String roomName) {
         ItemStack itemStack = new ItemStack(TMMItems.KEY);
         itemStack.apply(DataComponentTypes.LORE, LoreComponent.DEFAULT, component -> new LoreComponent(Text.literal(roomName).getWithStyle(Style.EMPTY.withItalic(false).withColor(0xFF8C00))));
-        if (source.getPlayer() != null) source.getPlayer().giveItemStack(itemStack);
+        if (source.getPlayer() != null) {
+            source.getPlayer().giveItemStack(itemStack);
+            source.sendFeedback(
+                () -> Text.translatable("commands.tmm.giveroomkey", roomName)
+                    .styled(style -> style.withColor(0x00FF00)),
+                true
+            );
+        }
         return 1;
     }
 }

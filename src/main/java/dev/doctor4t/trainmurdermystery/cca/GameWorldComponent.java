@@ -339,7 +339,7 @@ public class GameWorldComponent implements AutoSyncedComponent, ServerTickingCom
                     }
 
                     // passive money
-                    Integer balanceToAdd = GameConstants.PASSIVE_MONEY_TICKER.apply(world.getTime());
+                    Integer balanceToAdd = GameConstants.getPassiveMoneyTicker().apply(world.getTime());
                     if (balanceToAdd > 0) PlayerShopComponent.KEY.get(player).addToBalance(balanceToAdd);
                     if (this.isInnocent(player) && !GameFunctions.isPlayerEliminated(player)) civilianAlive = true;
                 }

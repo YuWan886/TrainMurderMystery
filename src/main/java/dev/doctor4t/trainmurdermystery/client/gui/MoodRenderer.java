@@ -167,7 +167,7 @@ public class MoodRenderer {
         context.getMatrices().translate(random.nextGaussian() / 3, random.nextGaussian() / 3, 0);
         context.getMatrices().push();
         context.getMatrices().translate(26, 8 + renderer.fontHeight, 0);
-        var duration = Math.max(1f, component.getPsychoTicks() - tickCounter.getTickDelta(true)) / GameConstants.PSYCHO_TIMER;
+        var duration = Math.max(1f, component.getPsychoTicks() - tickCounter.getTickDelta(true)) / GameConstants.getPsychoTimer();
         context.getMatrices().scale(150 * duration, 1, 1);
         context.fill(0, 0, 1, 1, colour | ((int) (0.9f * 255) << 24));
         context.getMatrices().pop();
@@ -181,12 +181,12 @@ public class MoodRenderer {
             random.setSeed(tick);
             var alpha = (12 - i) / 12f;
             context.getMatrices().push();
-            var moodScale = 0.2f + (GameConstants.PSYCHO_MODE_ARMOUR - component.armour) * 0.8f;
+            var moodScale = 0.2f + (GameConstants.getPsychoModeArmour() - component.armour) * 0.8f;
             var eyeScale = 0.8f;
             context.getMatrices().translate(
                     (random.nextFloat() - random.nextFloat()) * moodScale * i,
                     (random.nextFloat() - random.nextFloat()) * moodScale * i, -i * 3);
-            context.drawSprite(5, 6, 0, 14, 17, context.guiAtlasManager.getSprite(component.armour == GameConstants.PSYCHO_MODE_ARMOUR ? MOOD_PSYCHO : MOOD_PSYCHO_HIT), 1f, 1f, 1f, alpha);
+            context.drawSprite(5, 6, 0, 14, 17, context.guiAtlasManager.getSprite(component.armour == GameConstants.getPsychoModeArmour() ? MOOD_PSYCHO : MOOD_PSYCHO_HIT), 1f, 1f, 1f, alpha);
             context.getMatrices().translate(
                     (random.nextFloat() - random.nextFloat()) * eyeScale * i,
                     (random.nextFloat() - random.nextFloat()) * eyeScale * i, 1);

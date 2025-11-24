@@ -32,7 +32,7 @@ public class LimitedInventoryScreen extends LimitedHandledScreen<PlayerScreenHan
     protected void init() {
         super.init();
         if (!GameWorldComponent.KEY.get(this.player.getWorld()).canUseKillerFeatures(player)) return;
-        var entries = GameConstants.SHOP_ENTRIES;
+        var entries = GameConstants.getShopEntries();
         int apart = 38;
         var x = this.width / 2 - entries.size() * apart / 2 + 9;
         var y = this.y - 46;

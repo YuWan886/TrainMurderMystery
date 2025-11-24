@@ -4,6 +4,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import dev.doctor4t.trainmurdermystery.game.GameFunctions;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.text.Text;
 import org.jetbrains.annotations.NotNull;
 
 public class StopCommand {
@@ -17,6 +18,11 @@ public class StopCommand {
                 ))
                 .executes(context -> {
                     GameFunctions.stopGame(context.getSource().getWorld());
+                    context.getSource().sendFeedback(
+                        () -> Text.translatable("commands.tmm.stop")
+                            .styled(style -> style.withColor(0x00FF00)),
+                        true
+                    );
                     return 1;
                 })
         );

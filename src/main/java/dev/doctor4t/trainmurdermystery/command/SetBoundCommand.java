@@ -6,6 +6,7 @@ import dev.doctor4t.trainmurdermystery.TMM;
 import dev.doctor4t.trainmurdermystery.cca.GameWorldComponent;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.text.Text;
 
 public class SetBoundCommand {
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
@@ -21,6 +22,20 @@ public class SetBoundCommand {
                 () -> {
                     GameWorldComponent gameWorldComponent = GameWorldComponent.KEY.get(source.getWorld());
                     gameWorldComponent.setBound(enabled);
+                    
+                    if (enabled) {
+                        source.sendFeedback(
+                            () -> Text.translatable("commands.tmm.setbound.enabled")
+                                .styled(style -> style.withColor(0x00FF00)),
+                            true
+                        );
+                    } else {
+                        source.sendFeedback(
+                            () -> Text.translatable("commands.tmm.setbound.disabled")
+                                .styled(style -> style.withColor(0x00FF00)),
+                            true
+                        );
+                    }
                 }
         );
     }

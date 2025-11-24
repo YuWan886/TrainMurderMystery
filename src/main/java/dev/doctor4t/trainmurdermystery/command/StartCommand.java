@@ -38,6 +38,11 @@ public class StartCommand {
         return TMM.executeSupporterCommand(source,
                 () -> {
                     GameFunctions.startGame(source.getWorld(), gameMode, GameConstants.getInTicks(minutes, 0));
+                    source.sendFeedback(
+                        () -> Text.translatable("commands.tmm.start", gameMode.toString(), minutes)
+                            .styled(style -> style.withColor(0x00FF00)),
+                        true
+                    );
                 }
         );
     }

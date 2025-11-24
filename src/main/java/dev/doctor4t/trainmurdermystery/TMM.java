@@ -41,6 +41,9 @@ public class TMM implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        // Init config - must be called first to generate config file
+        TMMConfig.init();
+        
         // Init constants
         GameConstants.init();
 
@@ -74,6 +77,7 @@ public class TMM implements ModInitializer {
             AutoStartCommand.register(dispatcher);
             LockToSupportersCommand.register(dispatcher);
             SetRoleCountCommand.register(dispatcher);
+            ConfigCommand.register(dispatcher);
         }));
 
         // server lock to supporters

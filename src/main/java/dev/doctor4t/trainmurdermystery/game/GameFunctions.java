@@ -152,8 +152,8 @@ public class GameFunctions {
     private static int assignRolesAndGetKillerCount(@NotNull ServerWorld world, @NotNull List<ServerPlayerEntity> players, GameWorldComponent gameComponent) {
         // select roles
         var roleSelector = ScoreboardRoleSelectorComponent.KEY.get(world.getScoreboard());
-        var killerCount = TMMConfig.killerCount;
-        var vigilanteCount = TMMConfig.vigilanteCount;
+        var killerCount = GameConstants.RoleConfig.killerCount;
+        var vigilanteCount = GameConstants.RoleConfig.vigilanteCount;
         var total = roleSelector.assignKillers(world, gameComponent, players, killerCount);
         roleSelector.assignVigilantes(world, gameComponent, players, vigilanteCount);
         return total;
@@ -332,7 +332,7 @@ public class GameFunctions {
         }
 
         if (killer != null) {
-            PlayerShopComponent.KEY.get(killer).addToBalance(GameConstants.MONEY_PER_KILL);
+            PlayerShopComponent.KEY.get(killer).addToBalance(GameConstants.getMoneyPerKill());
 
             // replenish derringer
             for (List<ItemStack> list : killer.getInventory().combinedInventory) {

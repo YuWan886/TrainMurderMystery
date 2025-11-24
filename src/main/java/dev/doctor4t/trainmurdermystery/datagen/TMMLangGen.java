@@ -134,18 +134,151 @@ public class TMMLangGen extends FabricLanguageProvider {
 
         builder.add("commands.supporter_only", "Super silly supporter commands are reserved for Ko-Fi and YouTube members; if you wanna try them out, please consider supporting! <3");
 
+        // 配置翻译
         builder.add("trainmurdermystery.midnightconfig.title", "The Last Voyage of the Harpy Express - Config");
         builder.add("trainmurdermystery.midnightconfig.ultraPerfMode", "Ultra Performance Mode");
         builder.add("trainmurdermystery.midnightconfig.ultraPerfMode.tooltip", "Disables scenery for a worse visual experience but maximum performance. Lowers render distance to 2.");
         builder.add("trainmurdermystery.midnightconfig.disableScreenShake", "Disable Screen Shake");
+        
+        // 配置分类
+        builder.add("trainmurdermystery.midnightconfig.category.shop", "Shop");
+        builder.add("trainmurdermystery.midnightconfig.category.cooldowns", "Cooldowns");
+        builder.add("trainmurdermystery.midnightconfig.category.game", "Game");
+        
+        // 商店价格配置
+        builder.add("trainmurdermystery.midnightconfig.shopPricesComment", "Shop Item Prices");
+        builder.add("trainmurdermystery.midnightconfig.knifePrice", "Knife Price");
+        builder.add("trainmurdermystery.midnightconfig.revolverPrice", "Revolver Price");
+        builder.add("trainmurdermystery.midnightconfig.grenadePrice", "Grenade Price");
+        builder.add("trainmurdermystery.midnightconfig.psychoModePrice", "Psycho Mode Price");
+        builder.add("trainmurdermystery.midnightconfig.poisonVialPrice", "Poison Vial Price");
+        builder.add("trainmurdermystery.midnightconfig.scorpionPrice", "Scorpion Price");
+        builder.add("trainmurdermystery.midnightconfig.firecrackerPrice", "Firecracker Price");
+        builder.add("trainmurdermystery.midnightconfig.lockpickPrice", "Lockpick Price");
+        builder.add("trainmurdermystery.midnightconfig.crowbarPrice", "Crowbar Price");
+        builder.add("trainmurdermystery.midnightconfig.bodyBagPrice", "Body Bag Price");
+        builder.add("trainmurdermystery.midnightconfig.blackoutPrice", "Blackout Price");
+        builder.add("trainmurdermystery.midnightconfig.notePrice", "Note Price");
+        
+        // 冷却时间配置
+        builder.add("trainmurdermystery.midnightconfig.cooldownsComment", "Item Cooldowns (seconds)");
+        builder.add("trainmurdermystery.midnightconfig.knifeCooldown", "Knife Cooldown");
+        builder.add("trainmurdermystery.midnightconfig.revolverCooldown", "Revolver Cooldown");
+        builder.add("trainmurdermystery.midnightconfig.derringerCooldown", "Derringer Cooldown");
+        builder.add("trainmurdermystery.midnightconfig.grenadeCooldown", "Grenade Cooldown");
+        builder.add("trainmurdermystery.midnightconfig.lockpickCooldown", "Lockpick Cooldown");
+        builder.add("trainmurdermystery.midnightconfig.crowbarCooldown", "Crowbar Cooldown");
+        builder.add("trainmurdermystery.midnightconfig.bodyBagCooldown", "Body Bag Cooldown");
+        builder.add("trainmurdermystery.midnightconfig.psychoModeCooldown", "Psycho Mode Cooldown");
+        builder.add("trainmurdermystery.midnightconfig.blackoutCooldown", "Blackout Cooldown");
+        
+        // 游戏配置
+        builder.add("trainmurdermystery.midnightconfig.gameConfigComment", "Game Configuration");
+        builder.add("trainmurdermystery.midnightconfig.startingMoney", "Starting Money");
+        builder.add("trainmurdermystery.midnightconfig.passiveMoneyAmount", "Passive Money Amount");
+        builder.add("trainmurdermystery.midnightconfig.passiveMoneyInterval", "Passive Money Interval");
+        builder.add("trainmurdermystery.midnightconfig.moneyPerKill", "Money Per Kill");
+        builder.add("trainmurdermystery.midnightconfig.psychoModeArmor", "Psycho Mode Armor");
+        builder.add("trainmurdermystery.midnightconfig.psychoModeDuration", "Psycho Mode Duration");
+        builder.add("trainmurdermystery.midnightconfig.firecrackerDuration", "Firecracker Duration");
+        builder.add("trainmurdermystery.midnightconfig.blackoutMinDuration", "Blackout Min Duration");
+        builder.add("trainmurdermystery.midnightconfig.blackoutMaxDuration", "Blackout Max Duration");
 
+        // GUI 相关翻译
         builder.add("credits.trainmurdermystery.thank_you", "Thank you for playing The Last Voyage of the Harpy Express!\nMe and my team spent a lot of time working\non this mod and we hope you enjoy it.\nIf you do and wish to make a video or stream\nplease make sure to credit my channel,\nvideo and the mod page!\n - RAT / doctor4t");
         builder.add("I should write something first", "I should write something first");
         builder.add("Purchase Failed", "Purchase Failed");
         builder.add("Edit Note", "Edit Note");
         builder.add("Server is reserved to doctor4t supporters.", "Server is reserved to doctor4t supporters.");
         builder.add("Role Weights:", "Role Weights:");
-        builder.add("trainmurdermystery.midnightconfig.killerCount", "Killer Count");
-        builder.add("trainmurdermystery.midnighteonfig.vigilanteCount", "Viglilante Count");
+        
+        // 命令系统翻译
+        builder.add("commands.tmm.start", "Game started successfully!");
+        builder.add("commands.tmm.stop", "Game stopped successfully!");
+        builder.add("commands.tmm.forcerole", "Role set to %s for player %s");
+        builder.add("commands.tmm.forcerole.multiple", "Role set to %s for %s players");
+        builder.add("commands.tmm.setrolecount", "Role count set: %s = %s");
+        builder.add("commands.tmm.enableweights.enabled", "Weight system enabled");
+        builder.add("commands.tmm.enableweights.disabled", "Weight system disabled");
+        builder.add("commands.tmm.checkweights.header", "=== Player Weights ===");
+        builder.add("commands.tmm.checkweights.entry", "%s: Killer=%s, Vigilante=%s");
+        builder.add("commands.tmm.resetweights", "All weights have been reset");
+        builder.add("commands.tmm.setmoney", "Set %s's money to $%s");
+        builder.add("commands.tmm.setmoney.multiple", "Set money to $%s for %s players");
+        builder.add("commands.tmm.settimer", "Game timer set to %s minutes");
+        builder.add("commands.tmm.givekey", "Gave key for room %s to %s");
+        builder.add("commands.tmm.givekey.multiple", "Gave key for room %s to %s players");
+        builder.add("commands.tmm.setbound.enabled", "Boundary restriction enabled");
+        builder.add("commands.tmm.setbound.disabled", "Boundary restriction disabled");
+        builder.add("commands.tmm.autostart.enabled", "Auto-start enabled");
+        builder.add("commands.tmm.autostart.disabled", "Auto-start disabled");
+        builder.add("commands.tmm.locktosupporters.enabled", "Server locked to supporters only");
+        builder.add("commands.tmm.locktosupporters.disabled", "Server unlocked");
+        builder.add("commands.tmm.config.reload", "✓ Configuration reloaded successfully");
+        builder.add("commands.tmm.config.reload.fail", "✗ Configuration reload failed: %s");
+        builder.add("commands.tmm.config.reset", "✓ Configuration reset to defaults");
+        builder.add("commands.tmm.config.reset.fail", "✗ Configuration reset failed: %s");
+        builder.add("commands.tmm.setvisual.snow", "Snow visual effect set to %s");
+        builder.add("commands.tmm.setvisual.fog", "Fog visual effect set to %s");
+        builder.add("commands.tmm.setvisual.hud", "HUD visual effect set to %s");
+        builder.add("commands.tmm.setvisual.trainspeed", "Train speed visual effect set to %s");
+        builder.add("commands.tmm.setvisual.time", "Time of day visual effect set to %s");
+        builder.add("commands.tmm.setvisual.reset", "Visual effects reset to defaults");
+        builder.add("commands.tmm.updatedoors", "Train doors updated successfully");
+        
+        // Additional command translations
+        builder.add("commands.tmm.setrolecount.error.too_many_killers", "Cannot set %s killers: only %s players online");
+        builder.add("commands.tmm.setrolecount.too_many_vigilantes", "Cannot set %s vigilantes: only %s players online");
+        builder.add("commands.tmm.setrolecount.killer", "Killer count set to %s");
+        builder.add("commands.tmm.setrolecount.vigilante", "Vigilante count set to %s");
+        
+        builder.add("commands.tmm.giveroomkey", "Gave key for room %s");
+        
+        builder.add("commands.tmm.forcerole.killer", "Forced %s to be killer");
+        builder.add("commands.tmm.forcerole.killer.multiple", "Forced %s players to be killers");
+        builder.add("commands.tmm.forcerole.vigilante", "Forced %s to be vigilante");
+        builder.add("commands.tmm.forcerole.vigilante.multiple", "Forced %s players to be vigilantes");
+        
+        // Config command display translations
+        builder.add("commands.tmm.config.show.header", "=== TMM Configuration ===");
+        builder.add("commands.tmm.config.show.shop_prices.header", "Shop Prices:");
+        builder.add("commands.tmm.config.show.shop_prices.knife", "  Knife: $%s");
+        builder.add("commands.tmm.config.show.shop_prices.revolver", "  Revolver: $%s");
+        builder.add("commands.tmm.config.show.shop_prices.grenade", "  Grenade: $%s");
+        builder.add("commands.tmm.config.show.shop_prices.psycho_mode", "  Psycho Mode: $%s");
+        builder.add("commands.tmm.config.show.shop_prices.poison_vial", "  Poison Vial: $%s");
+        builder.add("commands.tmm.config.show.shop_prices.scorpion", "  Scorpion: $%s");
+        builder.add("commands.tmm.config.show.shop_prices.firecracker", "  Firecracker: $%s");
+        builder.add("commands.tmm.config.show.shop_prices.lockpick", "  Lockpick: $%s");
+        builder.add("commands.tmm.config.show.shop_prices.crowbar", "  Crowbar: $%s");
+        builder.add("commands.tmm.config.show.shop_prices.body_bag", "  Body Bag: $%s");
+        builder.add("commands.tmm.config.show.shop_prices.blackout", "  Blackout: $%s");
+        builder.add("commands.tmm.config.show.shop_prices.note", "  Note: $%s");
+        
+        builder.add("commands.tmm.config.show.cooldowns.header", "Item Cooldowns (seconds):");
+        builder.add("commands.tmm.config.show.cooldowns.knife", "  Knife: %ss");
+        builder.add("commands.tmm.config.show.cooldowns.revolver", "  Revolver: %ss");
+        builder.add("commands.tmm.config.show.cooldowns.derringer", "  Derringer: %ss");
+        builder.add("commands.tmm.config.show.cooldowns.grenade", "  Grenade: %ss");
+        builder.add("commands.tmm.config.show.cooldowns.lockpick", "  Lockpick: %ss");
+        builder.add("commands.tmm.config.show.cooldowns.crowbar", "  Crowbar: %ss");
+        builder.add("commands.tmm.config.show.cooldowns.body_bag", "  Body Bag: %ss");
+        builder.add("commands.tmm.config.show.cooldowns.psycho_mode", "  Psycho Mode: %ss");
+        builder.add("commands.tmm.config.show.cooldowns.blackout", "  Blackout: %ss");
+        
+        builder.add("commands.tmm.config.show.game_settings.header", "Game Settings:");
+        builder.add("commands.tmm.config.show.game_settings.starting_money", "  Starting Money: $%s");
+        builder.add("commands.tmm.config.show.game_settings.passive_money_amount", "  Passive Money Amount: $%s");
+        builder.add("commands.tmm.config.show.game_settings.passive_money_interval", "  Passive Money Interval: %ss");
+        builder.add("commands.tmm.config.show.game_settings.money_per_kill", "  Money Per Kill: $%s");
+        builder.add("commands.tmm.config.show.game_settings.psycho_mode_armor", "  Psycho Mode Armor: %s");
+        builder.add("commands.tmm.config.show.game_settings.psycho_mode_duration", "  Psycho Mode Duration: %ss");
+        builder.add("commands.tmm.config.show.game_settings.firecracker_duration", "  Firecracker Duration: %ss");
+        builder.add("commands.tmm.config.show.game_settings.blackout_min_duration", "  Blackout Min Duration: %ss");
+        builder.add("commands.tmm.config.show.game_settings.blackout_max_duration", "  Blackout Max Duration: %ss");
+        
+        builder.add("commands.tmm.config.show.footer", "==========================");
+        builder.add("commands.tmm.config.show.hint", "Use '/tmm:config reload' to reload or '/tmm:config reset' to reset to defaults");
+
     }
 }

@@ -35,7 +35,7 @@ public class PlayerShopComponent implements AutoSyncedComponent, ServerTickingCo
     }
 
     public void reset() {
-        this.balance = GameConstants.MONEY_START;
+        this.balance = GameConstants.getMoneyStart();
         this.sync();
     }
 
@@ -49,8 +49,9 @@ public class PlayerShopComponent implements AutoSyncedComponent, ServerTickingCo
     }
 
     public void tryBuy(int index) {
-        if (index < 0 || index >= GameConstants.SHOP_ENTRIES.size()) return;
-        var entry = GameConstants.SHOP_ENTRIES.get(index);
+        var entries = GameConstants.getShopEntries();
+        if (index < 0 || index >= entries.size()) return;
+        var entry = entries.get(index);
         if (FabricLoader.getInstance().isDevelopmentEnvironment() && this.balance < entry.price())
             this.balance = entry.price() * 10;
         if (this.balance >= entry.price() && !this.player.getItemCooldownManager().isCoolingDown(entry.stack().getItem()) && entry.onBuy(this.player)) {

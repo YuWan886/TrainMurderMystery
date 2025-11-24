@@ -63,8 +63,8 @@ public class PlayerPsychoComponent implements AutoSyncedComponent, ServerTicking
 
     public boolean startPsycho() {
         if (ShopEntry.insertStackInFreeSlot(this.player, new ItemStack(TMMItems.BAT))) {
-            this.setPsychoTicks(GameConstants.PSYCHO_TIMER);
-            this.setArmour(GameConstants.PSYCHO_MODE_ARMOUR);
+            this.setPsychoTicks(GameConstants.getPsychoTimer());
+            this.setArmour(GameConstants.getPsychoModeArmour());
             var gameWorldComponent = GameWorldComponent.KEY.get(this.player.getWorld());
             gameWorldComponent.setPsychosActive(gameWorldComponent.getPsychosActive() + 1);
             return true;

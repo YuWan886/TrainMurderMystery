@@ -8,6 +8,7 @@ import net.minecraft.block.enums.DoubleBlockHalf;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.NotNull;
 
@@ -32,6 +33,12 @@ public class UpdateDoorsCommand {
                     }
                 }
             }
+
+            source.sendFeedback(
+                () -> Text.translatable("commands.tmm.updatedoors")
+                    .styled(style -> style.withColor(0x00FF00)),
+                true
+            );
 
             return 1;
         }));

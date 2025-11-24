@@ -7,6 +7,7 @@ import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
@@ -28,6 +29,21 @@ public class ForceRoleCommand {
                     var component = ScoreboardRoleSelectorComponent.KEY.get(source.getServer().getScoreboard());
                     component.forcedKillers.clear();
                     for (var player : players) component.forcedKillers.add(player.getUuid());
+                    
+                    if (players.size() == 1) {
+                        ServerPlayerEntity player = players.iterator().next();
+                        source.sendFeedback(
+                            () -> Text.translatable("commands.tmm.forcerole.killer", player.getName().getString())
+                                .styled(style -> style.withColor(0x00FF00)),
+                            true
+                        );
+                    } else {
+                        source.sendFeedback(
+                            () -> Text.translatable("commands.tmm.forcerole.killer.multiple", players.size())
+                                .styled(style -> style.withColor(0x00FF00)),
+                            true
+                        );
+                    }
                 }
         );
     }
@@ -38,6 +54,21 @@ public class ForceRoleCommand {
                     var component = ScoreboardRoleSelectorComponent.KEY.get(source.getServer().getScoreboard());
                     component.forcedVigilantes.clear();
                     for (var player : players) component.forcedVigilantes.add(player.getUuid());
+                    
+                    if (players.size() == 1) {
+                        ServerPlayerEntity player = players.iterator().next();
+                        source.sendFeedback(
+                            () -> Text.translatable("commands.tmm.forcerole.vigilante", player.getName().getString())
+                                .styled(style -> style.withColor(0x00FF00)),
+                            true
+                        );
+                    } else {
+                        source.sendFeedback(
+                            () -> Text.translatable("commands.tmm.forcerole.vigilante.multiple", players.size())
+                                .styled(style -> style.withColor(0x00FF00)),
+                            true
+                        );
+                    }
                 }
         );
     }

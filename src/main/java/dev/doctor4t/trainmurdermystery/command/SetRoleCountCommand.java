@@ -4,7 +4,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import dev.doctor4t.trainmurdermystery.TMM;
-import dev.doctor4t.trainmurdermystery.TMMConfig;
+import dev.doctor4t.trainmurdermystery.game.GameConstants;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Text;
@@ -30,16 +30,16 @@ public class SetRoleCountCommand {
             
             if (count > playerCount) {
                 context.getSource().sendError(
-                        Text.literal(String.format("错误: 杀手人数(%d)不能超过当前在线玩家人数(%d)", count, playerCount))
+                        Text.translatable("commands.tmm.setrolecount.error.too_many_killers", count, playerCount)
                 );
                 return;
             }
             
-            TMMConfig.killerCount = count;
-            TMMConfig.write("trainmurdermystery");
+            GameConstants.RoleConfig.killerCount = count;
             
             context.getSource().sendFeedback(
-                    () -> Text.literal(String.format("杀手人数已设置为: %d", count)),
+                    () -> Text.translatable("commands.tmm.setrolecount.killer", count)
+                        .styled(style -> style.withColor(0x00FF00)),
                     true
             );
         });
@@ -52,16 +52,16 @@ public class SetRoleCountCommand {
             
             if (count > playerCount) {
                 context.getSource().sendError(
-                        Text.literal(String.format("错误: 警卫人数(%d)不能超过当前在线玩家人数(%d)", count, playerCount))
+                        Text.translatable("commands.tmm.setrolecount.too_many_vigilantes", count, playerCount)
                 );
                 return;
             }
             
-            TMMConfig.vigilanteCount = count;
-            TMMConfig.write("trainmurdermystery");
+            GameConstants.RoleConfig.vigilanteCount = count;
             
             context.getSource().sendFeedback(
-                    () -> Text.literal(String.format("警卫人数已设置为: %d", count)),
+                    () -> Text.translatable("commands.tmm.setrolecount.vigilante", count)
+                        .styled(style -> style.withColor(0x00FF00)),
                     true
             );
         });

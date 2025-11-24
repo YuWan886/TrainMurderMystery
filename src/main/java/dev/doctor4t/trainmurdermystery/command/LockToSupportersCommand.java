@@ -5,6 +5,7 @@ import com.mojang.brigadier.arguments.BoolArgumentType;
 import dev.doctor4t.trainmurdermystery.cca.GameWorldComponent;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.text.Text;
 
 import java.util.UUID;
 
@@ -19,6 +20,20 @@ public class LockToSupportersCommand {
 
     private static int execute(ServerCommandSource source, boolean value) {
         GameWorldComponent.KEY.get(source.getWorld()).setLockedToSupporters(value);
+        
+        if (value) {
+            source.sendFeedback(
+                () -> Text.translatable("commands.tmm.locktosupporters.enabled")
+                    .styled(style -> style.withColor(0x00FF00)),
+                true
+            );
+        } else {
+            source.sendFeedback(
+                () -> Text.translatable("commands.tmm.locktosupporters.disabled")
+                    .styled(style -> style.withColor(0x00FF00)),
+                true
+            );
+        }
         return 1;
     }
 

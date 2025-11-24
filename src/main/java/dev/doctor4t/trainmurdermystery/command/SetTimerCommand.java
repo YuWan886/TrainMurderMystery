@@ -7,6 +7,7 @@ import dev.doctor4t.trainmurdermystery.cca.GameTimeComponent;
 import dev.doctor4t.trainmurdermystery.game.GameConstants;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.text.Text;
 
 public class SetTimerCommand {
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
@@ -27,6 +28,11 @@ public class SetTimerCommand {
         return TMM.executeSupporterCommand(source,
                 () -> {
                     GameTimeComponent.KEY.get(source.getWorld()).setTime(GameConstants.getInTicks(minutes, seconds));
+                    source.sendFeedback(
+                        () -> Text.translatable("commands.tmm.settimer", minutes, seconds)
+                            .styled(style -> style.withColor(0x00FF00)),
+                        true
+                    );
                 }
         );
     }
