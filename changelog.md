@@ -1,4 +1,10 @@
 ------------------------------------------------------
+The Last Voyage of the Harpy Express 1.1.5 - 1.21.1
+------------------------------------------------------
+- Fixed a crash that could happen on server start
+- Added a Turkish translation, thanks to rjjr35379-hue 🐀❤️
+
+------------------------------------------------------
 The Last Voyage of the Harpy Express 1.1.4 - 1.21.1
 ------------------------------------------------------
 - Fixed lobby not being visible in ultra performance mode
@@ -8,6 +14,8 @@ The Last Voyage of the Harpy Express 1.1.4 - 1.21.1
 - Turned items that can get hallucinated into an item tag, thanks to kaleidoscopikatt 🐀❤️
 - Added a new API function to allow custom roles to use Killer features, thanks to agmass 🐀❤️
 - Added a Chinese translation, thanks to ZeroIcceBear 🐀❤️
+- Added a Spanish (Spain) translation, thanks to TyricSatyric 🐀❤️
+- Added Ukrainian translation, thanks to MagnarIUK 🐀❤️
 - Updated Russian translation, thanks to TheBendy42 🐀❤️
 
 ------------------------------------------------------

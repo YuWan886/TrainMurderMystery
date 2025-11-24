@@ -1,5 +1,6 @@
 package dev.doctor4t.trainmurdermystery.cca;
 
+import com.mojang.datafixers.types.templates.Named;
 import dev.doctor4t.trainmurdermystery.TMM;
 import dev.doctor4t.trainmurdermystery.api.TMMRoles;
 import dev.doctor4t.trainmurdermystery.client.TMMClient;
@@ -8,16 +9,22 @@ import dev.doctor4t.trainmurdermystery.game.GameFunctions;
 import dev.doctor4t.trainmurdermystery.index.tag.TMMItemTags;
 import dev.doctor4t.trainmurdermystery.util.TaskCompletePayload;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.loot.context.LootContext;
+import net.minecraft.loot.context.LootContextParameterSet;
+import net.minecraft.loot.context.LootContextType;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.registry.entry.RegistryEntryList;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.Util;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.ladysnake.cca.api.v3.component.ComponentKey;
@@ -28,6 +35,7 @@ import org.ladysnake.cca.api.v3.component.tick.ServerTickingComponent;
 
 import java.util.*;
 import java.util.function.Function;
+import java.util.stream.Stream;
 
 import static dev.doctor4t.trainmurdermystery.TMM.isSkyVisibleAdjacent;
 
@@ -64,13 +72,16 @@ public class PlayerMoodComponent implements AutoSyncedComponent, ServerTickingCo
 
     private List<Item> getPsychosisItemPool() {
         if (cachedPsychosisItems == null) {
-            cachedPsychosisItems = this.player.getWorld().getRegistryManager()
-                    .get(RegistryKeys.ITEM)
-                    .getEntryList(TMMItemTags.PSYCHOSIS_ITEMS)
-                    .orElseThrow()
-                    .stream()
-                    .map(RegistryEntry::value)
-                    .toList();
+            cachedPsychosisItems = this.player.getRegistryManager()
+                    .createRegistryLookup()
+                    .getOrThrow(RegistryKeys.ITEM)
+                    .getOptional(TMMItemTags.PSYCHOSIS_ITEMS)
+                    .map(RegistryEntryList.ListBacked::stream)
+                    .map(stream -> stream.map(RegistryEntry::value).toList())
+                    .orElseGet(() -> {
+                        TMM.LOGGER.error("Server provided empty tag {}", TMMItemTags.PSYCHOSIS_ITEMS.id());
+                        return List.of();
+                    });
         }
         return cachedPsychosisItems;
     }
@@ -89,8 +100,8 @@ public class PlayerMoodComponent implements AutoSyncedComponent, ServerTickingCo
                     List<Item> taggedItems = getPsychosisItemPool();
 
                     if (!taggedItems.isEmpty() && this.player.getRandom().nextFloat() < GameConstants.ITEM_PSYCHOSIS_CHANCE) {
-                        Item item = taggedItems.get(this.player.getRandom().nextInt(taggedItems.size()));
-                        psychosisStack = item.getDefaultStack();
+                        Item item = Util.getRandom(taggedItems, this.player.getRandom());
+                        psychosisStack = new ItemStack(item);
                     } else {
                         psychosisStack = playerEntity.getMainHandStack();
                     }
