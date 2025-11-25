@@ -1,8 +1,6 @@
 package dev.doctor4t.trainmurdermystery.cca;
 
 import dev.doctor4t.trainmurdermystery.TMM;
-import dev.doctor4t.trainmurdermystery.api.GameMode;
-import dev.doctor4t.trainmurdermystery.api.TMMGameModes;
 import dev.doctor4t.trainmurdermystery.game.GameConstants;
 import dev.doctor4t.trainmurdermystery.game.GameFunctions;
 import net.minecraft.nbt.NbtCompound;
@@ -35,16 +33,15 @@ public class AutoStartComponent implements AutoSyncedComponent, CommonTickingCom
 
     @Override
     public void tick() {
-        GameWorldComponent gameWorldComponent = GameWorldComponent.KEY.get(this.world);
-        if (gameWorldComponent.isRunning()) return;
+        if (GameWorldComponent.KEY.get(this.world).isRunning()) return;
 
         if (this.startTime <= 0 && this.time <= 0) return;
 
-        if (GameFunctions.getReadyPlayerCount(world) >= gameWorldComponent.getGameMode().minPlayerCount) {
+        if (GameFunctions.getReadyPlayerCount(world) >= GameConstants.MIN_PLAYER_COUNT) {
             if (this.time-- <= 0 && this.world instanceof ServerWorld serverWorld) {
-                if (gameWorldComponent.getGameStatus() == GameWorldComponent.GameStatus.INACTIVE) {
-                    GameMode gameMode = TMMGameModes.MURDER;
-                    GameFunctions.startGame(serverWorld, gameMode, GameConstants.getInTicks(gameMode.defaultStartTime, 0));
+                if (GameWorldComponent.KEY.get(world).getGameStatus() == GameWorldComponent.GameStatus.INACTIVE) {
+                    GameWorldComponent.GameMode gameMode = GameWorldComponent.GameMode.MURDER;
+                    GameFunctions.startGame(serverWorld, gameMode, GameConstants.getInTicks(gameMode.startTime, 0));
                     return;
                 }
             }

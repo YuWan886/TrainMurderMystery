@@ -29,7 +29,7 @@ public class LobbyPlayersRenderer {
             if (autoStartComponent.isAutoStartActive()) {
                 MutableText autoStartText;
                 int color = 0xFFAAAAAA;
-                if (readyPlayerCount >= game.getGameMode().minPlayerCount) {
+                if (readyPlayerCount >= GameConstants.MIN_PLAYER_COUNT) {
                     int seconds = autoStartComponent.getTime() / 20;
                     autoStartText = Text.translatable(seconds <= 0 ? "lobby.autostart.starting" : "lobby.autostart.time", seconds);
                     color = 0xFF00BC16;
