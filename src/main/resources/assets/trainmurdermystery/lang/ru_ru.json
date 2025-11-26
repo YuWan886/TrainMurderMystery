@@ -254,6 +254,7 @@
   "block.trainmurdermystery.white_trimmed_bed": "Кровать с белой отделкой",
   "category.trainmurdermystery.keybinds": "Последний рейс Harpy Express",
   "commands.supporter_only": "Глупенькие команды доступны только для спонсоров на Ko-Fi и YouTube. Если вы хотите их попробовать, поддержите нас! <3",
+  "commands.tmm.start": "Режим игры %s запущен, продолжительность: %s минут",
   "container.cabinet": "Шкафчик",
   "container.cargo_box": "Грузовой ящик",
   "credits.trainmurdermystery.thank_you": "Спасибо за игру в Последний рейс Harpy Express!\nЯ и моя команда потратили много времени работая\nнад этим модом и надеемся, что он вам понравится.\nЕсли вы хотите сделать видео или постримить,\nпожалуйста, упомяните мой канал,\nвидео и страницу мода!\n - RAT / doctor4t",

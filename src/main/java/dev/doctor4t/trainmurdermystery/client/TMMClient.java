@@ -85,8 +85,8 @@ public class TMMClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        // Note: Config is already initialized in TMM.java (server-side)
-        // No need to initialize it again here to avoid duplication
+        // Load config
+        // TMMConfig.init(TMM.MOD_ID, TMMConfig.class);
 
         // Initialize ScreenParticle
         handParticleManager = new HandParticleManager();
@@ -214,7 +214,7 @@ public class TMMClient implements ClientModInitializer {
 
         // Lock options
         OptionLocker.overrideOption("gamma", 0d);
-        // OptionLocker.overrideOption("renderDistance", getLockedRenderDistance(TMMConfig.ultraPerfMode)); // Render distance lock removed
+        OptionLocker.overrideOption("renderDistance", getLockedRenderDistance(TMMConfig.ultraPerfMode)); // mfw 15 fps on a 3050 - Cup // haha 🫵 brokie - RAT // buy me a better one then - Cup // okay nvm I fixed it I was actually rendering a lot of empty chunks we didn't need my bad LMAO - RAT
         OptionLocker.overrideOption("showSubtitles", false);
         OptionLocker.overrideOption("autoJump", false);
         OptionLocker.overrideOption("renderClouds", CloudRenderMode.OFF);
@@ -406,7 +406,7 @@ public class TMMClient implements ClientModInitializer {
         return instinctKeybind.isPressed() && ((isKiller() && isPlayerAliveAndInSurvival()) || isPlayerSpectatingOrCreative());
     }
 
-/*    public static int getLockedRenderDistance(boolean ultraPerfMode) {
+    public static int getLockedRenderDistance(boolean ultraPerfMode) {
         return ultraPerfMode ? 2 : 32;
-    }*/
+    }
 }

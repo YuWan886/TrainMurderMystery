@@ -254,6 +254,7 @@
   "block.trainmurdermystery.white_trimmed_bed": "Lit aux draps blancs",
   "category.trainmurdermystery.keybinds": "Train Murder Mystery",
   "commands.supporter_only": "Ces super commandes sont réservées aux supporters Ko‑Fi/Patreon et YouTube ; si vous voulez les essayer, pensez à soutenir le projet ! <3",
+  "commands.tmm.start": "Mode de jeu %s démarré, durée : %s minutes",
   "container.cabinet": "Armoire",
   "container.cargo_box": "Caisse de fret",
   "credits.trainmurdermystery.thank_you": "Merci d'avoir joué à The Last Voyage of the Harpy Express !\nMon équipe et moi avons passé beaucoup de temps sur ce mod\net nous espérons que vous apprécierez.\nSi vous faites une vidéo ou un stream, merci de créditer ma chaîne,\nla vidéo et la page du mod !\n - RAT / doctor4t",

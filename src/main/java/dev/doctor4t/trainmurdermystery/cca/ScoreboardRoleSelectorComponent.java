@@ -50,7 +50,7 @@ public class ScoreboardRoleSelectorComponent implements AutoSyncedComponent {
             killerTotal += Math.exp(-this.killerRounds.getOrDefault(player.getUuid(), 0) * 4);
             vigilanteTotal += Math.exp(-this.vigilanteRounds.getOrDefault(player.getUuid(), 0) * 4);
         }
-        var text = Text.translatable("Role Weights:").formatted(Formatting.GRAY);
+        var text = Text.literal("Role Weights:").formatted(Formatting.GRAY);
         for (var player : source.getWorld().getPlayers()) {
             text = text.append("\n").append(player.getDisplayName());
             var killerRounds = this.killerRounds.getOrDefault(player.getUuid(), 0);

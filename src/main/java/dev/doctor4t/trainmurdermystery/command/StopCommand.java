@@ -19,9 +19,9 @@ public class StopCommand {
                 .executes(context -> {
                     GameFunctions.stopGame(context.getSource().getWorld());
                     context.getSource().sendFeedback(
-                        () -> Text.translatable("commands.tmm.stop")
-                            .styled(style -> style.withColor(0x00FF00)),
-                        true
+                            () -> Text.translatable("commands.tmm.stop")
+                                    .styled(style -> style.withColor(0x00FF00)),
+                            true
                     );
                     return 1;
                 })

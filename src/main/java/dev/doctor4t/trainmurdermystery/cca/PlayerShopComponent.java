@@ -49,9 +49,8 @@ public class PlayerShopComponent implements AutoSyncedComponent, ServerTickingCo
     }
 
     public void tryBuy(int index) {
-        var entries = GameConstants.getShopEntries();
-        if (index < 0 || index >= entries.size()) return;
-        var entry = entries.get(index);
+        if (index < 0 || index >= GameConstants.getShopEntries().size()) return;
+        var entry = GameConstants.getShopEntries().get(index);
         if (FabricLoader.getInstance().isDevelopmentEnvironment() && this.balance < entry.price())
             this.balance = entry.price() * 10;
         if (this.balance >= entry.price() && !this.player.getItemCooldownManager().isCoolingDown(entry.stack().getItem()) && entry.onBuy(this.player)) {
@@ -60,7 +59,7 @@ public class PlayerShopComponent implements AutoSyncedComponent, ServerTickingCo
                 player.networkHandler.sendPacket(new PlaySoundS2CPacket(Registries.SOUND_EVENT.getEntry(TMMSounds.UI_SHOP_BUY), SoundCategory.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0f, 0.9f + this.player.getRandom().nextFloat() * 0.2f, player.getRandom().nextLong()));
             }
         } else {
-            this.player.sendMessage(Text.translatable("Purchase Failed").formatted(Formatting.DARK_RED), true);
+            this.player.sendMessage(Text.literal("Purchase Failed").formatted(Formatting.DARK_RED), true);
             if (this.player instanceof ServerPlayerEntity player) {
                 player.networkHandler.sendPacket(new PlaySoundS2CPacket(Registries.SOUND_EVENT.getEntry(TMMSounds.UI_SHOP_BUY_FAIL), SoundCategory.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0f, 0.9f + this.player.getRandom().nextFloat() * 0.2f, player.getRandom().nextLong()));
             }

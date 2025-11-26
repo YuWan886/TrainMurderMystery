@@ -127,7 +127,7 @@ public class TMMLangGen extends FabricLanguageProvider {
         builder.add("game.psycho_mode.text", "Kill them all!");
         builder.add("game.psycho_mode.over", "Psycho Mode Over!");
         builder.add("game.tip.cohort", "Killer Cohort");
-        builder.add("game.start_error.not_enough_players", "Game cannot start: 6 players minimum are required.");
+        builder.add("game.start_error.not_enough_players", "Game cannot start: %s players minimum are required.");
         builder.add("game.start_error.game_running", "Game cannot start: a game is already running. Please try again from the lobby.");
 
         builder.add("tmm.gui.reset", "Clear");
@@ -139,12 +139,14 @@ public class TMMLangGen extends FabricLanguageProvider {
         builder.add("trainmurdermystery.midnightconfig.ultraPerfMode", "Ultra Performance Mode");
         builder.add("trainmurdermystery.midnightconfig.ultraPerfMode.tooltip", "Disables scenery for a worse visual experience but maximum performance. Lowers render distance to 2.");
         builder.add("trainmurdermystery.midnightconfig.disableScreenShake", "Disable Screen Shake");
-        
+
         // 配置分类
         builder.add("trainmurdermystery.midnightconfig.category.shop", "Shop");
         builder.add("trainmurdermystery.midnightconfig.category.cooldowns", "Cooldowns");
         builder.add("trainmurdermystery.midnightconfig.category.game", "Game");
-        
+        builder.add("trainmurdermystery.midnightconfig.category.client", "Client");
+
+        builder.add("trainmurdermystery.midnightconfig.clientConfigComment", "Client");
         // 商店价格配置
         builder.add("trainmurdermystery.midnightconfig.shopPricesComment", "Shop Item Prices");
         builder.add("trainmurdermystery.midnightconfig.knifePrice", "Knife Price");
@@ -159,7 +161,7 @@ public class TMMLangGen extends FabricLanguageProvider {
         builder.add("trainmurdermystery.midnightconfig.bodyBagPrice", "Body Bag Price");
         builder.add("trainmurdermystery.midnightconfig.blackoutPrice", "Blackout Price");
         builder.add("trainmurdermystery.midnightconfig.notePrice", "Note Price");
-        
+
         // 冷却时间配置
         builder.add("trainmurdermystery.midnightconfig.cooldownsComment", "Item Cooldowns (seconds)");
         builder.add("trainmurdermystery.midnightconfig.knifeCooldown", "Knife Cooldown");
@@ -171,7 +173,7 @@ public class TMMLangGen extends FabricLanguageProvider {
         builder.add("trainmurdermystery.midnightconfig.bodyBagCooldown", "Body Bag Cooldown");
         builder.add("trainmurdermystery.midnightconfig.psychoModeCooldown", "Psycho Mode Cooldown");
         builder.add("trainmurdermystery.midnightconfig.blackoutCooldown", "Blackout Cooldown");
-        
+
         // 游戏配置
         builder.add("trainmurdermystery.midnightconfig.gameConfigComment", "Game Configuration");
         builder.add("trainmurdermystery.midnightconfig.startingMoney", "Starting Money");
@@ -191,7 +193,7 @@ public class TMMLangGen extends FabricLanguageProvider {
         builder.add("Edit Note", "Edit Note");
         builder.add("Server is reserved to doctor4t supporters.", "Server is reserved to doctor4t supporters.");
         builder.add("Role Weights:", "Role Weights:");
-        
+
         // 命令系统翻译
         builder.add("commands.tmm.start", "Game started successfully!");
         builder.add("commands.tmm.stop", "Game stopped successfully!");
@@ -225,20 +227,20 @@ public class TMMLangGen extends FabricLanguageProvider {
         builder.add("commands.tmm.setvisual.time", "Time of day visual effect set to %s");
         builder.add("commands.tmm.setvisual.reset", "Visual effects reset to defaults");
         builder.add("commands.tmm.updatedoors", "Train doors updated successfully");
-        
+
         // Additional command translations
         builder.add("commands.tmm.setrolecount.error.too_many_killers", "Cannot set %s killers: only %s players online");
         builder.add("commands.tmm.setrolecount.too_many_vigilantes", "Cannot set %s vigilantes: only %s players online");
         builder.add("commands.tmm.setrolecount.killer", "Killer count set to %s");
         builder.add("commands.tmm.setrolecount.vigilante", "Vigilante count set to %s");
-        
+
         builder.add("commands.tmm.giveroomkey", "Gave key for room %s");
-        
+
         builder.add("commands.tmm.forcerole.killer", "Forced %s to be killer");
         builder.add("commands.tmm.forcerole.killer.multiple", "Forced %s players to be killers");
         builder.add("commands.tmm.forcerole.vigilante", "Forced %s to be vigilante");
         builder.add("commands.tmm.forcerole.vigilante.multiple", "Forced %s players to be vigilantes");
-        
+
         // Config command display translations
         builder.add("commands.tmm.config.show.header", "=== TMM Configuration ===");
         builder.add("commands.tmm.config.show.shop_prices.header", "Shop Prices:");
@@ -254,7 +256,7 @@ public class TMMLangGen extends FabricLanguageProvider {
         builder.add("commands.tmm.config.show.shop_prices.body_bag", "  Body Bag: $%s");
         builder.add("commands.tmm.config.show.shop_prices.blackout", "  Blackout: $%s");
         builder.add("commands.tmm.config.show.shop_prices.note", "  Note: $%s");
-        
+
         builder.add("commands.tmm.config.show.cooldowns.header", "Item Cooldowns (seconds):");
         builder.add("commands.tmm.config.show.cooldowns.knife", "  Knife: %ss");
         builder.add("commands.tmm.config.show.cooldowns.revolver", "  Revolver: %ss");
@@ -265,7 +267,7 @@ public class TMMLangGen extends FabricLanguageProvider {
         builder.add("commands.tmm.config.show.cooldowns.body_bag", "  Body Bag: %ss");
         builder.add("commands.tmm.config.show.cooldowns.psycho_mode", "  Psycho Mode: %ss");
         builder.add("commands.tmm.config.show.cooldowns.blackout", "  Blackout: %ss");
-        
+
         builder.add("commands.tmm.config.show.game_settings.header", "Game Settings:");
         builder.add("commands.tmm.config.show.game_settings.starting_money", "  Starting Money: $%s");
         builder.add("commands.tmm.config.show.game_settings.passive_money_amount", "  Passive Money Amount: $%s");
@@ -276,7 +278,7 @@ public class TMMLangGen extends FabricLanguageProvider {
         builder.add("commands.tmm.config.show.game_settings.firecracker_duration", "  Firecracker Duration: %ss");
         builder.add("commands.tmm.config.show.game_settings.blackout_min_duration", "  Blackout Min Duration: %ss");
         builder.add("commands.tmm.config.show.game_settings.blackout_max_duration", "  Blackout Max Duration: %ss");
-        
+
         builder.add("commands.tmm.config.show.footer", "==========================");
         builder.add("commands.tmm.config.show.hint", "Use '/tmm:config reload' to reload or '/tmm:config reset' to reset to defaults");
 

@@ -254,6 +254,7 @@
   "block.trainmurdermystery.white_trimmed_bed": "Cama Blanca Decorada",
   "category.trainmurdermystery.keybinds": "Train Murder Mystery",
   "commands.supporter_only": "Los comandos super sillis de mecena están reservados para los miembros de Ko-Fi y YouTube; ¡Si los quieres probar, porfavor considera apoyarme! <3",
+  "commands.tmm.start": "Modo de juego %s iniciado, duración: %s minutos",
   "container.cabinet": "Cabinete",
   "container.cargo_box": "Caja de Carga",
   "credits.trainmurdermystery.thank_you": "¡Gracias por jugar El Último Viaje del Harpy Express!\nMi equipo y yo pasamos mucho tiempo trabajando\nen este mod y esperamos que te guste.\n¡Si haces y quieres hacer un video o stream\nporfavor asegúrate de acreditar mi canal,\nel vídeo y la página del mod!\n - RAT / doctor4t",

@@ -31,7 +31,7 @@ public class NoteItem extends Item implements AdventureUsable {
         if (player == null || player.isSneaking()) return ActionResult.PASS;
         var component = PlayerNoteComponent.KEY.get(player);
         if (!component.written) {
-            player.sendMessage(Text.translatable("I should write something first").withColor(MathHelper.hsvToRgb(0F, 1.0F, 0.6F)), true);
+            player.sendMessage(Text.literal("I should write something first").withColor(MathHelper.hsvToRgb(0F, 1.0F, 0.6F)), true);
             return ActionResult.PASS;
         }
         var world = player.getWorld();

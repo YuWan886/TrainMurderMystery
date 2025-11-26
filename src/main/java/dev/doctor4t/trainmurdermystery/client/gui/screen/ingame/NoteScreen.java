@@ -28,7 +28,7 @@ public class NoteScreen extends Screen {
     private @Nullable SelectionManager selectionManager;
 
     public NoteScreen() {
-        super(Text.translatable("Edit Note"));
+        super(Text.literal("Edit Note"));
     }
 
     @Override
