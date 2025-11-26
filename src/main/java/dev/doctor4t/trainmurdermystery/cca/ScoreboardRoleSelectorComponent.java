@@ -3,6 +3,7 @@ package dev.doctor4t.trainmurdermystery.cca;
 import dev.doctor4t.trainmurdermystery.TMM;
 import dev.doctor4t.trainmurdermystery.api.TMMRoles;
 import dev.doctor4t.trainmurdermystery.client.gui.RoleAnnouncementTexts;
+import dev.doctor4t.trainmurdermystery.game.GameConstants;
 import dev.doctor4t.trainmurdermystery.index.TMMItems;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -130,7 +131,10 @@ public class ScoreboardRoleSelectorComponent implements AutoSyncedComponent {
                 }
             }
         }
-        for (var player : killers) gameComponent.addRole(player, TMMRoles.KILLER);
+        for (var player : killers) {
+            gameComponent.addRole(player, TMMRoles.KILLER);
+            PlayerShopComponent.KEY.get(player).setBalance(GameConstants.getMoneyStart());
+        }
         return killers.size();
     }
 

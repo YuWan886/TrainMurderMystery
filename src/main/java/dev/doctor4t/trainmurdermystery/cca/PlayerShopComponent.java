@@ -35,7 +35,7 @@ public class PlayerShopComponent implements AutoSyncedComponent, ServerTickingCo
     }
 
     public void reset() {
-        this.balance = GameConstants.getMoneyStart();
+        this.balance = 0;
         this.sync();
     }
 

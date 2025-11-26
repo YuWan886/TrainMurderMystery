@@ -9,6 +9,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
@@ -155,5 +156,15 @@ public interface GameConstants {
 
     static int getInTicks(int minutes, int seconds) {
         return (minutes * 60 + seconds) * 20;
+    }
+
+    interface DeathReasons {
+        Identifier GENERIC = TMM.id("generic");
+        Identifier KNIFE = TMM.id("knife_stab");
+        Identifier GUN = TMM.id("gun_shot");
+        Identifier BAT = TMM.id("bat_hit");
+        Identifier GRENADE = TMM.id("grenade");
+        Identifier POISON = TMM.id("poison");
+        Identifier FELL_OUT_OF_TRAIN = TMM.id("fell_out_of_train");
     }
 }

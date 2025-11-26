@@ -11,6 +11,7 @@ import dev.doctor4t.trainmurdermystery.cca.PlayerMoodComponent;
 import dev.doctor4t.trainmurdermystery.cca.PlayerPoisonComponent;
 import dev.doctor4t.trainmurdermystery.event.AllowPlayerPunching;
 import dev.doctor4t.trainmurdermystery.event.IsPlayerPunchable;
+import dev.doctor4t.trainmurdermystery.game.GameConstants;
 import dev.doctor4t.trainmurdermystery.game.GameFunctions;
 import dev.doctor4t.trainmurdermystery.index.TMMDataComponentTypes;
 import dev.doctor4t.trainmurdermystery.index.TMMItems;
@@ -92,7 +93,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         }
 
         if (GameFunctions.isPlayerAliveAndSurvival(self) && getMainHandStack().isOf(TMMItems.BAT) && target instanceof PlayerEntity playerTarget && this.getAttackCooldownProgress(0.5F) >= 1f) {
-            GameFunctions.killPlayer(playerTarget, true, self, TMM.id("bat_hit"));
+            GameFunctions.killPlayer(playerTarget, true, self, GameConstants.DeathReasons.BAT);
             self.getEntityWorld().playSound(self,
                     playerTarget.getX(), playerTarget.getEyeY(), playerTarget.getZ(),
                     TMMSounds.ITEM_BAT_HIT, SoundCategory.PLAYERS,

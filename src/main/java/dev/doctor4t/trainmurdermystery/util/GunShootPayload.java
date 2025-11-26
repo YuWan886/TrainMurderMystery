@@ -63,7 +63,7 @@ public record GunShootPayload(int target) implements CustomPayload {
                     // backfire: if you kill an innocent you have a chance of shooting yourself instead
                     if (game.isInnocent(player) && player.getRandom().nextFloat() <= game.getBackfireChance()) {
                         backfire = true;
-                        GameFunctions.killPlayer(player, true, player, TMM.id("gun_shot"));
+                        GameFunctions.killPlayer(player, true, player, GameConstants.DeathReasons.GUN);
                     } else {
                         Scheduler.schedule(() -> {
                             if (!context.player().getInventory().contains((s) -> s.isIn(TMMItemTags.GUNS))) return;
@@ -80,7 +80,7 @@ public record GunShootPayload(int target) implements CustomPayload {
                 }
 
                 if (!backfire) {
-                    GameFunctions.killPlayer(target, true, player, TMM.id("gun_shot"));
+                    GameFunctions.killPlayer(target, true, player, GameConstants.DeathReasons.GUN);
                 }
             }
 

@@ -274,14 +274,15 @@ public class GameFunctions {
         return player == null || !player.isAlive() || player.isCreative() || player.isSpectator();
     }
 
+    @SuppressWarnings("unused")
     public static void killPlayer(PlayerEntity victim, boolean spawnBody, @Nullable PlayerEntity killer) {
-        killPlayer(victim, spawnBody, killer, TMM.id("generic"));
+        killPlayer(victim, spawnBody, killer, GameConstants.DeathReasons.GENERIC);
     }
 
-    public static void killPlayer(PlayerEntity victim, boolean spawnBody, @Nullable PlayerEntity killer, Identifier identifier) {
+    public static void killPlayer(PlayerEntity victim, boolean spawnBody, @Nullable PlayerEntity killer, Identifier deathReason) {
         var component = PlayerPsychoComponent.KEY.get(victim);
 
-        if (!AllowPlayerDeath.EVENT.invoker().allowDeath(victim, identifier)) return;
+        if (!AllowPlayerDeath.EVENT.invoker().allowDeath(victim, deathReason)) return;
         if (component.getPsychoTicks() > 0) {
             if (component.getArmour() > 0) {
                 component.setArmour(component.getArmour() - 1);
@@ -299,7 +300,7 @@ public class GameFunctions {
             return;
         }
 
-        if (killer != null) {
+        if (killer != null && GameWorldComponent.KEY.get(killer.getWorld()).canUseKillerFeatures(killer)) {
             PlayerShopComponent.KEY.get(killer).addToBalance(GameConstants.getMoneyPerKill());
 
             // replenish derringer

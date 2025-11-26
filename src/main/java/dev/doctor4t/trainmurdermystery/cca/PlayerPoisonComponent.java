@@ -1,6 +1,7 @@
 package dev.doctor4t.trainmurdermystery.cca;
 
 import dev.doctor4t.trainmurdermystery.TMM;
+import dev.doctor4t.trainmurdermystery.game.GameConstants;
 import dev.doctor4t.trainmurdermystery.game.GameFunctions;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
@@ -86,7 +87,7 @@ public class PlayerPoisonComponent implements AutoSyncedComponent, ServerTicking
             this.poisonTicks--;
             if (this.poisonTicks == 0) {
                 this.poisonTicks = -1;
-                GameFunctions.killPlayer(this.player, true, this.poisoner == null ? null : this.player.getWorld().getPlayerByUuid(this.poisoner), TMM.id("poison"));
+                GameFunctions.killPlayer(this.player, true, this.poisoner == null ? null : this.player.getWorld().getPlayerByUuid(this.poisoner), GameConstants.DeathReasons.POISON);
                 this.poisoner = null;
                 this.sync();
             }

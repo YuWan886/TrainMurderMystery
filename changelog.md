@@ -1,4 +1,11 @@
 ------------------------------------------------------
+The Last Voyage of the Harpy Express 1.2.2 - 1.21.1
+------------------------------------------------------
+- Removed money earning and starting amount from any players not killer to avoid the ability to buy items when you shouldn't
+  - Additionally, also put players who manage to purchase something from the shop when they shouldn't be able to in spectator
+- API: Moved death reason Identifiers to GameConstants$DeathReasons (ekulxam)
+
+------------------------------------------------------
 The Last Voyage of the Harpy Express 1.2.1 - 1.21.1
 ------------------------------------------------------
 - Fixed internal server error when trying to join a server once a game is already running
