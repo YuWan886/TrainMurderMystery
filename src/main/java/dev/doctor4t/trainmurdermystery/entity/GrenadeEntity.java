@@ -13,6 +13,7 @@ import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.particle.ItemStackParticleEffect;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.hit.HitResult;
@@ -38,7 +39,7 @@ public class GrenadeEntity extends ThrownItemEntity {
             world.spawnParticles(ParticleTypes.SMOKE, this.getX(), this.getY() + .1f, this.getZ(), 100, 0, 0, 0, .2f);
             world.spawnParticles(new ItemStackParticleEffect(ParticleTypes.ITEM, this.getDefaultItem().getDefaultStack()), this.getX(), this.getY() + .1f, this.getZ(), 100, 0, 0, 0, 1f);
 
-            for (var player : world.getPlayers(serverPlayerEntity ->
+            for (ServerPlayerEntity player : world.getPlayers(serverPlayerEntity ->
                     this.getBoundingBox().expand(3f).contains(serverPlayerEntity.getPos()) &&
                             GameFunctions.isPlayerAliveAndSurvival(serverPlayerEntity))) {
                 GameFunctions.killPlayer(player, true, this.getOwner() instanceof PlayerEntity playerEntity ? playerEntity : null, GameConstants.DeathReasons.GRENADE);

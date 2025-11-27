@@ -4,6 +4,7 @@ import dev.doctor4t.trainmurdermystery.TMM;
 import dev.doctor4t.trainmurdermystery.game.GameConstants;
 import dev.doctor4t.trainmurdermystery.index.TMMItems;
 import dev.doctor4t.trainmurdermystery.index.TMMSounds;
+import dev.doctor4t.trainmurdermystery.util.ShopEntry;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
@@ -50,7 +51,7 @@ public class PlayerShopComponent implements AutoSyncedComponent, ServerTickingCo
 
     public void tryBuy(int index) {
         if (index < 0 || index >= GameConstants.getShopEntries().size()) return;
-        var entry = GameConstants.getShopEntries().get(index);
+        ShopEntry entry = GameConstants.getShopEntries().get(index);
         if (FabricLoader.getInstance().isDevelopmentEnvironment() && this.balance < entry.price())
             this.balance = entry.price() * 10;
         if (this.balance >= entry.price() && !this.player.getItemCooldownManager().isCoolingDown(entry.stack().getItem()) && entry.onBuy(this.player)) {

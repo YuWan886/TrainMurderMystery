@@ -37,15 +37,14 @@ public class ShopEntry {
     }
 
     public boolean onBuy(@NotNull PlayerEntity player) {
-        if (GameWorldComponent.KEY.get(player).canUseKillerFeatures(player) && player instanceof ServerPlayerEntity serverPlayerEntity) {
-            serverPlayerEntity.changeGameMode(GameMode.SPECTATOR);
-        }
-        return insertStackInFreeSlot(player, this.stack.copy());
+        if (GameWorldComponent.KEY.get(player.getWorld()).canUseKillerFeatures(player)) {
+            return insertStackInFreeSlot(player, this.stack.copy());
+        } else return false;
     }
 
     public static boolean insertStackInFreeSlot(@NotNull PlayerEntity player, ItemStack stackToInsert) {
-        for (var i = 0; i < 9; i++) {
-            var stack = player.getInventory().getStack(i);
+        for (int i = 0; i < 9; i++) {
+            ItemStack stack = player.getInventory().getStack(i);
             if (stack.isEmpty()) {
                 player.getInventory().setStack(i, stackToInsert);
                 return true;

@@ -1,4 +1,38 @@
 ------------------------------------------------------
+The Last Voyage of the Harpy Express 1.2.6 - 1.21.1
+------------------------------------------------------
+- Fixed psycho ambience not going away
+
+------------------------------------------------------
+The Last Voyage of the Harpy Express 1.2.5 - 1.21.1
+------------------------------------------------------
+- Fixed psycho mode not stopping properly
+
+------------------------------------------------------
+The Last Voyage of the Harpy Express 1.2.4 - 1.21.1
+------------------------------------------------------
+- Fixed killers sometimes not being able to sprint
+
+------------------------------------------------------
+The Last Voyage of the Harpy Express 1.2.3 - 1.21.1
+------------------------------------------------------
+- Fixed killers not having infinite sprint
+- Fixed psychosis no longer showing random items but empty hands instead
+- Made creative players using the bat no longer hit people like in vanilla and instead work like in survival / adventure
+- Using the bat in creative will now toggle on and off psycho mode
+- API: Using -1 as a max sprint length will now make sure sprinting is infinite
+
+------------------------------------------------------
+The Last Voyage of the Harpy Express 1.2.2.2 - 1.21.1
+------------------------------------------------------
+- Fixed killer shop not working
+
+------------------------------------------------------
+The Last Voyage of the Harpy Express 1.2.2.1 - 1.21.1
+------------------------------------------------------
+- Fixed a crash when starting the game
+
+------------------------------------------------------
 The Last Voyage of the Harpy Express 1.2.2 - 1.21.1
 ------------------------------------------------------
 - Removed money earning and starting amount from any players not killer to avoid the ability to buy items when you shouldn't
